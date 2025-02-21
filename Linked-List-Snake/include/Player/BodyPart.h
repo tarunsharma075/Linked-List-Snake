@@ -11,6 +11,20 @@ namespace Player {
 		Direction direction;
 		float bodyPartWidth;
 		float bodyPartHeight;
+	
+
+		private:
+			void CreateBodyParts();
+		public:
+			BodyPart();
+			void Intialize(float width, float height, sf::Vector2i pos, Direction dir);
+			void Update();
+			void Render();
+			void Destroy();
+			void IntializeBodyParts();
+			sf::Vector2f BodyScreenPosition();
+			~BodyPart();
+		
 	};
 
 
