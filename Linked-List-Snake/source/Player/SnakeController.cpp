@@ -17,6 +17,7 @@ namespace Player {
 
 
 		}
+		/*else(currentsnakeSate == SnakeState::DEAD) { handelReset() }*/
 	}
 	void SnakeController::Render()
 	{
