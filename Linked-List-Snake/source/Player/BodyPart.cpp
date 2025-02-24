@@ -1,5 +1,6 @@
 #include "Player/BodyPart.h"
 #include"Global/Config.h"
+#include"Level/LevelView.h"
 namespace Player {
 	void Player::BodyPart::CreateBodyParts()
 	{
@@ -25,6 +26,7 @@ namespace Player {
 
 	void Player::BodyPart::Update()
 	{
+		UpdatePosition();
 	}
 
 	void Player::BodyPart::Render()
@@ -37,12 +39,79 @@ namespace Player {
 	}
 	void BodyPart::IntializeBodyParts()
 	{
-		bodyPart->initialize(Global::Config::snake_body_texture_path, bodyPartWidth, bodyPartHeight, BodyScreenPosition());
+		bodyPart->initialize(Global::Config::snake_body_texture_path, bodyPartWidth, bodyPartHeight, BodyPartScreenPosition());
 		bodyPart->setOriginAtCentre();
 	}
-	sf::Vector2f BodyPart::BodyScreenPosition()
+	sf::Vector2f BodyPart::BodyPartScreenPosition()
 	{
-		return sf::Vector2f(0, 0);
+		float xPosition = Level::LevelView::borderOffSetLeft + (gridPosition.x + bodyPartWidth) + (bodyPartWidth / 2);
+		float yPosition = Level::LevelView::borderOffSetTop + (gridPosition.y + bodyPartHeight) + (bodyPartHeight / 2);
+		return sf::Vector2f(xPosition, yPosition);
+	}
+	sf::Vector2i BodyPart::GetNextPosition()
+	{
+		switch(direction){	
+		case  Direction::UP:
+				return getNextPositionUp();
+			case Direction::DOWN:
+				return getNextPositionDown();
+			case Direction::LEFT:
+					return getNextPositionLeft();
+			case Direction::RIGHT:
+				return getNextPositioRight();
+			default:
+				return gridPosition;
+		}
+		
+				
+			
+	}
+	sf::Vector2i BodyPart::getNextPositionUp()
+	{
+		return sf::Vector2i(gridPosition.x,gridPosition.y+1);
+	}
+	sf::Vector2i BodyPart::getNextPositionDown()
+	{
+		return sf::Vector2i(gridPosition.x,gridPosition.y-1);
+	}
+	sf::Vector2i BodyPart::getNextPositionLeft()
+	{
+		return sf::Vector2i(gridPosition.x-1,gridPosition.y);
+	}
+	sf::Vector2i BodyPart::getNextPositioRight()
+	{
+		return sf::Vector2i(gridPosition.x+1,gridPosition.y);
+	}
+	void BodyPart::SetPosition(sf::Vector2i position)
+	{
+		position = gridPosition;
+	}
+	void BodyPart::UpdatePosition()
+	{
+		bodyPart->setPosition(BodyPartScreenPosition());
+		bodyPart->setRotation(GetRotation());
+		bodyPart->update();
+	}
+	float  BodyPart::GetRotation()
+	{
+		switch (direction) {
+			case Direction::UP:
+				return 270.f;
+			case Direction::DOWN:
+				return 90.f;
+			case Direction::RIGHT:
+				return 0;
+			case Direction::LEFT:
+				return 180.f;
+		}
+	}
+	Direction BodyPart::GetDirection()
+	{
+		return direction;
+	}
+	sf::Vector2i BodyPart::GetPosition()
+	{
+		return gridPosition;
 	}
 	BodyPart::~BodyPart()
 	{

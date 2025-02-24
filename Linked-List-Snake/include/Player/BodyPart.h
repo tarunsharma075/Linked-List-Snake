@@ -22,7 +22,20 @@ namespace Player {
 			void Render();
 			void Destroy();
 			void IntializeBodyParts();
-			sf::Vector2f BodyScreenPosition();
+			sf::Vector2f BodyPartScreenPosition();
+			sf::Vector2i GetNextPosition();
+			sf::Vector2i getNextPositionUp();
+			sf::Vector2i getNextPositionDown();
+			sf::Vector2i getNextPositionLeft();
+			sf::Vector2i getNextPositioRight();
+			void SetPosition(sf::Vector2i position);
+			void UpdatePosition();
+			float GetRotation();
+			Direction GetDirection();
+			sf::Vector2i GetPosition();
+
+
+			
 			~BodyPart();
 		
 	};
