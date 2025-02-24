@@ -68,11 +68,11 @@ namespace Player {
 	}
 	sf::Vector2i BodyPart::getNextPositionUp()
 	{
-		return sf::Vector2i(gridPosition.x,gridPosition.y+1);
+		return sf::Vector2i(gridPosition.x,gridPosition.y-1);
 	}
 	sf::Vector2i BodyPart::getNextPositionDown()
 	{
-		return sf::Vector2i(gridPosition.x,gridPosition.y-1);
+		return sf::Vector2i(gridPosition.x,gridPosition.y+1);
 	}
 	sf::Vector2i BodyPart::getNextPositionLeft()
 	{
