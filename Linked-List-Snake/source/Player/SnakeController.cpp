@@ -1,11 +1,21 @@
 #include"Player/SnakeController.h"
+#include"Global/ServiceLocator.h"
+
+using namespace Global;
+using namespace LinekdList;
 namespace Player {
 	SnakeController::SnakeController()
 	{
+		snakeHead = nullptr;
+		CreateLinkedList();
 	}
 	void Player::SnakeController::Intialize()
 	{
+		float Width = ServiceLocator::getInstance()->GetLevelServices()->GetCellWidth();
+		float Height = ServiceLocator::getInstance()->GetLevelServices()->GetCellHeight();
 		Reset();
+		snakeHead->Intialize(Width, Height, defaultPosition, defaultDirection);
+		
 	}
 	void SnakeController::Update()
 	{
@@ -17,11 +27,13 @@ namespace Player {
 
 
 		}
-		/*else(currentsnakeSate == SnakeState::DEAD) { handelReset() }*/
+		else if (currentsnakeSate == SnakeState::DEAD) {
+			handelReset();
+		}
 	}
 	void SnakeController::Render()
 	{
-		
+		snakeHead->Render();
 	}
 	void SnakeController::ProcessPlayerInput()
 	{
@@ -43,6 +55,7 @@ namespace Player {
 	}
 	void SnakeController::SpawnSnake()
 	{
+		snakeHead->CreateHeadNode();
 	}
 	void SnakeController::SetSnakeState(SnakeState state)
 	{
@@ -54,6 +67,10 @@ namespace Player {
 	SnakeState SnakeController::GetSnakeState()
 	{
 		return currentsnakeSate;
+	}
+	void SnakeController::CreateLinkedList()
+	{
+		snakeHead = new SingleLinkedList();
 	}
 	SnakeController::~SnakeController()
 	{

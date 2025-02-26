@@ -32,4 +32,12 @@ namespace Level {
 		current_level = level_to_load;
 		SpawPlayer();
 	}
+	float LevelService::GetCellHeight()
+	{
+		return levelController->GetCellHeight();
+	}
+	float LevelService::GetCellWidth()
+	{
+		return levelController->GetCellWidth();
+	}
 }

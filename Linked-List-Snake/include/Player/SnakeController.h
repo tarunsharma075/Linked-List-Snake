@@ -1,7 +1,10 @@
 #pragma once
 #include<SFML/Graphics.hpp>
 #include"Player/Direction.h"
+#include"LinkedList/SingleLinkedList.h"
 namespace Player {
+	
+	
 	
 		enum class SnakeState
 		{
@@ -14,9 +17,10 @@ namespace Player {
 	private:
 		const int snakeLength = 10;
 		SnakeState currentsnakeSate;
-		const sf::Vector2i defaultPosition = sf::Vector2i(25, 13);
+		const sf::Vector2i defaultPosition = sf::Vector2i(840,480);
 	const Direction defaultDirection = Direction::RIGHT;
 	Direction currentSnakeDirection;
+LinekdList::SingleLinkedList* snakeHead;
 	public:
 		SnakeController();
 		void Intialize();
@@ -32,6 +36,7 @@ namespace Player {
 		void SetSnakeState(SnakeState state);
 		void ReSpwanSnake();
 		SnakeState GetSnakeState();
+		void CreateLinkedList();
 		~SnakeController();
 	};
 }

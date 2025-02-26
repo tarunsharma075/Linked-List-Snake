@@ -2,7 +2,7 @@
 namespace LinekdList {
 	Player::Node* SingleLinkedList::CreateNode()
 	{
-		return new Player::Node;;
+		return new Player::Node;
 	}
 	LinekdList::SingleLinkedList::SingleLinkedList()
 	{
@@ -22,5 +22,12 @@ namespace LinekdList {
 	}
 	void SingleLinkedList::Render()
 	{
+		headNode->bodyPart.Render();
+	}
+	void SingleLinkedList::CreateHeadNode()
+	{
+		headNode = CreateNode();
+		headNode->bodyPart.Intialize(nodeWidth, nodeHeight, gridPosition, SnakeDirection);
+		return;
 	}
 }

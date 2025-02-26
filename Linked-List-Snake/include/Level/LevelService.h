@@ -14,5 +14,7 @@ namespace Level {
 		void SpawPlayer();
 		~LevelService();
 		void createLevel(LevelNumber level_to_load);
+		float GetCellHeight();
+		float GetCellWidth();
 	};
 }
