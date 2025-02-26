@@ -1,4 +1,6 @@
 #include"LinkedList/SingleLinkedList.h"
+#include"Player/Direction.h"
+using namespace Player;
 namespace LinekdList {
 	Player::Node* SingleLinkedList::CreateNode()
 	{
@@ -22,12 +24,54 @@ namespace LinekdList {
 	}
 	void SingleLinkedList::Render()
 	{
-		headNode->bodyPart.Render();
+		
+		Node* currentNode = headNode;
+		while (currentNode != nullptr) {
+			currentNode->bodyPart.Render();
+			currentNode = currentNode->next;
+		}
 	}
-	void SingleLinkedList::CreateHeadNode()
+	
+	sf::Vector2i SingleLinkedList::GetNewNodePosition(Player::Node* referenceNode)
 	{
-		headNode = CreateNode();
-		headNode->bodyPart.Intialize(nodeWidth, nodeHeight, gridPosition, SnakeDirection);
-		return;
+		Direction directionReference = referenceNode->bodyPart.GetDirection();
+		sf::Vector2i positionReference= referenceNode->bodyPart.GetPosition();
+
+		switch (directionReference)
+		{
+		case Direction::UP:
+			return sf::Vector2i(positionReference.x, positionReference.y - 1);
+			break;
+		case Direction::DOWN:
+			return sf::Vector2i(positionReference.x, positionReference.y + 1);
+			break;
+		case Direction::LEFT:
+			return sf::Vector2i(positionReference.x - 1, positionReference.y);
+			break;
+		case Direction::RIGHT:
+			return sf::Vector2i(positionReference.x + 1, positionReference.y);
+			break;
+		default:
+			return gridPosition;
+			
+		}
 	}
+	void SingleLinkedList::InsertNodeAtTail()
+	{
+		Node*newNode = CreateNode();
+		Node* currentNode = headNode;
+
+		if (currentNode == nullptr) {
+			headNode = newNode;
+			newNode->bodyPart.Intialize(nodeWidth, nodeHeight, gridPosition, SnakeDirection);
+			return;
+		}
+		while (currentNode->next != nullptr) {
+			currentNode = currentNode->next;
+	}
+		currentNode->next = newNode;
+		newNode->bodyPart.Intialize(nodeWidth, nodeHeight, GetNewNodePosition(currentNode), currentNode->bodyPart.GetDirection());
+		
+	}
+	
 }

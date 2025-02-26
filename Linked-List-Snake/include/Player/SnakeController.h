@@ -15,7 +15,7 @@ namespace Player {
 		
 	class SnakeController {
 	private:
-		const int snakeLength = 10;
+		const int snakeLength = 100;
 		SnakeState currentsnakeSate;
 		const sf::Vector2i defaultPosition = sf::Vector2i(840,480);
 	const Direction defaultDirection = Direction::RIGHT;

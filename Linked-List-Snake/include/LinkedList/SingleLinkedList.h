@@ -16,6 +16,8 @@ namespace LinekdList {
 		~SingleLinkedList();
 		void Intialize(float width, float height, sf::Vector2i position, Player::Direction direction);
 		void Render();
-		void CreateHeadNode();
+		
+		sf::Vector2i GetNewNodePosition(Player::Node*referenceNode);
+		void InsertNodeAtTail();
 	};
 }

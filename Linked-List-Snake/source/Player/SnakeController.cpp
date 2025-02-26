@@ -55,7 +55,9 @@ namespace Player {
 	}
 	void SnakeController::SpawnSnake()
 	{
-		snakeHead->CreateHeadNode();
+		for (int i = 0; i < snakeLength; i++) {
+			snakeHead->InsertNodeAtTail();
+		}
 	}
 	void SnakeController::SetSnakeState(SnakeState state)
 	{

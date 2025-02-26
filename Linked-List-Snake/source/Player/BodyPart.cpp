@@ -17,7 +17,7 @@ namespace Player {
 
 	void Player::BodyPart::Intialize(float width, float height, sf::Vector2i pos, Direction di)
 	{
-		bodyPartWidth = width;
+		ChangeRotation = width;
 		bodyPartHeight = height;
 		gridPosition = pos;
 		direction = di;
@@ -39,12 +39,12 @@ namespace Player {
 	}
 	void BodyPart::IntializeBodyParts()
 	{
-		bodyPart->initialize(Global::Config::snake_body_texture_path, bodyPartWidth, bodyPartHeight, BodyPartScreenPosition());
+		bodyPart->initialize(Global::Config::snake_body_texture_path, ChangeRotation, bodyPartHeight, BodyPartScreenPosition());
 		bodyPart->setOriginAtCentre();
 	}
 	sf::Vector2f BodyPart::BodyPartScreenPosition()
 	{
-		float xPosition = Level::LevelView::borderOffSetLeft + (gridPosition.x + bodyPartWidth) + (bodyPartWidth / 2);
+		float xPosition = Level::LevelView::borderOffSetLeft + (gridPosition.x + ChangeRotation) + (ChangeRotation / 2);
 		float yPosition = Level::LevelView::borderOffSetTop + (gridPosition.y + bodyPartHeight) + (bodyPartHeight / 2);
 		return sf::Vector2f(xPosition, yPosition);
 	}
