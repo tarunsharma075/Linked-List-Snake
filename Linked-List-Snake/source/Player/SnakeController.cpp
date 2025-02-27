@@ -32,6 +32,7 @@ namespace Player {
 		case SnakeState::ALIVE:
 			ProcessPlayerInput();
 			DelayedMovement();
+			currenInputState = InputState::Waiting;
 			break;
 		case SnakeState::DEAD:
 			handelReset();
@@ -45,18 +46,25 @@ namespace Player {
 	void SnakeController::ProcessPlayerInput()
 	{
 		EventService* event = Global::ServiceLocator::getInstance()->getEventService();
-		if (event->pressedUpArrowKey() && currentSnakeDirection != Direction::DOWN) {
+		if (event->pressedUpArrowKey() && currentSnakeDirection != Direction::DOWN&&currenInputState== InputState::Waiting) {
+			currenInputState = InputState::Processing;
 			currentSnakeDirection = Direction::UP;
 			
 		}
-		else if (event->pressedDownArrowKey() && currentSnakeDirection!= Direction::UP) {
+		else if (event->pressedDownArrowKey() && currentSnakeDirection!= Direction::UP && currenInputState == InputState::Waiting) {
+			currenInputState = InputState::Processing;
 			currentSnakeDirection = Direction::DOWN;
+		
 		}
-		else if (event->pressedLeftArrowKey() && currentSnakeDirection != Direction::RIGHT) {
+		else if (event->pressedLeftArrowKey() && currentSnakeDirection != Direction::RIGHT && currenInputState == InputState::Waiting) {
+			currenInputState = InputState::Processing;
 			currentSnakeDirection = Direction::LEFT;
+			
 		}
-		else if (event->pressedRightArrowKey() && currentSnakeDirection != Direction::LEFT) {
+		else if (event->pressedRightArrowKey() && currentSnakeDirection != Direction::LEFT && currenInputState == InputState::Waiting) {
+			currenInputState = InputState::Processing;
 			currentSnakeDirection = Direction::RIGHT;
+			
 		}
 	}
 	void SnakeController::UpdateSnakeDirection()
@@ -66,7 +74,7 @@ namespace Player {
 	void SnakeController::SnakeMovement()
 	{
 		snakeHead->UpdateSingleLinkedListPosition();
-
+	
 	}
 	void SnakeController::HandelSnakeCollision()
 	{
@@ -77,7 +85,7 @@ namespace Player {
 	void SnakeController::handelReset()
 	{
 		resetelapsedtime += Global::ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
-		if (resetDuration >= resetDuration) {
+		if (resetelapsedtime >= resetDuration) {
 			ReSpwanSnake();
 		}
 	}
@@ -87,6 +95,7 @@ namespace Player {
 		currentSnakeDirection = defaultDirection;
 		ElapsedTime = 0.f;
 		resetDuration = 0.f;
+		currenInputState = InputState::Waiting;
 	}
 	void SnakeController::SpawnSnake()
 	{
@@ -126,5 +135,7 @@ namespace Player {
 	}
 	SnakeController::~SnakeController()
 	{
+		snakeHead->RemoveAllHead();
+		delete(snakeHead);
 	}
 }

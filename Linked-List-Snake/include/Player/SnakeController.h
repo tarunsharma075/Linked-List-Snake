@@ -5,6 +5,11 @@
 namespace Player {
 	
 	
+	enum class InputState {
+
+		Processing,
+		Waiting,
+	};
 	
 		enum class SnakeState
 		{
@@ -18,6 +23,7 @@ namespace Player {
 		const int snakeLength = 10;
 		SnakeState currentsnakeSate= SnakeState::ALIVE;
 		const sf::Vector2i defaultPosition = sf::Vector2i(25,13);
+		InputState currenInputState;
 	const Direction defaultDirection = Direction::RIGHT;
 	float MovementDelay = 0.1f;
 	float ElapsedTime;
