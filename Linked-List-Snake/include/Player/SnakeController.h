@@ -21,6 +21,8 @@ namespace Player {
 	const Direction defaultDirection = Direction::RIGHT;
 	float MovementDelay = 0.1f;
 	float ElapsedTime;
+	float resetDuration = 2, f;
+	float resetelapsedtime;
 	Direction currentSnakeDirection;
 LinekdList::SingleLinkedList* snakeHead;
 	public:
@@ -40,6 +42,7 @@ LinekdList::SingleLinkedList* snakeHead;
 		SnakeState GetSnakeState();
 		void CreateLinkedList();
 		void DelayedMovement();
+		
 		
 		~SnakeController();
 	};

@@ -70,12 +70,23 @@ namespace Player {
 	}
 	void SnakeController::HandelSnakeCollision()
 	{
+		if (snakeHead->CheckNodeCollision()) {
+			currentsnakeSate = SnakeState::DEAD;
+		}
 	}
 	void SnakeController::handelReset()
 	{
+		resetelapsedtime += Global::ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+		if (resetDuration >= resetDuration) {
+			ReSpwanSnake();
+		}
 	}
 	void SnakeController::Reset()
 	{
+		currentsnakeSate = SnakeState::ALIVE;
+		currentSnakeDirection = defaultDirection;
+		ElapsedTime = 0.f;
+		resetDuration = 0.f;
 	}
 	void SnakeController::SpawnSnake()
 	{
@@ -89,6 +100,9 @@ namespace Player {
 	}
 	void SnakeController::ReSpwanSnake()
 	{
+		snakeHead->RemoveAllNodes();
+		Reset();
+		SpawnSnake();
 	}
 	SnakeState SnakeController::GetSnakeState()
 	{
