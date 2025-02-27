@@ -9,7 +9,7 @@ namespace Player {
 		UI::UIElement::ImageView* bodyPart;
 		sf::Vector2i gridPosition;
 		Direction direction;
-		float ChangeRotation;
+		float bodypartWidth;
 		float bodyPartHeight;
 	
 

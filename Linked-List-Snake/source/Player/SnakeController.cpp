@@ -1,37 +1,41 @@
 #include"Player/SnakeController.h"
 #include"Global/ServiceLocator.h"
 #include"Event/EventService.h"
-
+#include<iostream>
+#include"Time/TimeService.h"
 using namespace Global;
 using namespace Event;
 using namespace LinekdList;
+using namespace Time;
 namespace Player {
 	SnakeController::SnakeController()
 	{
+		
 		snakeHead = nullptr;
+		currentSnakeDirection = defaultDirection;
+		
 		CreateLinkedList();
 	}
 	void Player::SnakeController::Intialize()
 	{
 		float Width = ServiceLocator::getInstance()->GetLevelServices()->GetCellWidth();
 		float Height = ServiceLocator::getInstance()->GetLevelServices()->GetCellHeight();
+	
 		Reset();
 		snakeHead->Intialize(Width, Height, defaultPosition, defaultDirection);
+		std::cout << defaultPosition.x << " "<<defaultPosition.y;
 		
 	}
 	void SnakeController::Update()
 	{
-		if (currentsnakeSate == SnakeState::ALIVE) {
+		switch (currentsnakeSate) {
+		case SnakeState::ALIVE:
 			ProcessPlayerInput();
-			UpdateSnakeDirection();
-			HandelSnakeCollision();
-			SnakeMovement();
-		
-
-
-		}
-		else if (currentsnakeSate == SnakeState::DEAD) {
+			DelayedMovement();
+			break;
+		case SnakeState::DEAD:
 			handelReset();
+			break;
 		}
 	}
 	void SnakeController::Render()
@@ -92,6 +96,16 @@ namespace Player {
 	void SnakeController::CreateLinkedList()
 	{
 		snakeHead = new SingleLinkedList();
+	}
+	void SnakeController::DelayedMovement()
+	{
+		ElapsedTime += Global::ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+		if (ElapsedTime >= MovementDelay) {
+			ElapsedTime = 0.0f;
+			UpdateSnakeDirection();
+			HandelSnakeCollision();
+			SnakeMovement();
+		}
 	}
 	SnakeController::~SnakeController()
 	{

@@ -77,7 +77,7 @@ namespace LinekdList {
 
 	void SingleLinkedList::UpdateSingleLinekdListDirection(Player::Direction directionToSet)
 	{
-		std::cout << "The Change in direction is called";
+
 		Node* currentNode = headNode;
 		while (currentNode != nullptr) {
 
@@ -90,7 +90,7 @@ namespace LinekdList {
 
 	void SingleLinkedList::UpdateSingleLinkedListPosition()
 	{
-		std::cout << "Update the position is called";
+		
 
 		Node* currenNode = headNode;
 

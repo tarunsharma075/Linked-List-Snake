@@ -17,8 +17,10 @@ namespace Player {
 	private:
 		const int snakeLength = 10;
 		SnakeState currentsnakeSate= SnakeState::ALIVE;
-		const sf::Vector2i defaultPosition = sf::Vector2i(840,480);
+		const sf::Vector2i defaultPosition = sf::Vector2i(25,13);
 	const Direction defaultDirection = Direction::RIGHT;
+	float MovementDelay = 0.1f;
+	float ElapsedTime;
 	Direction currentSnakeDirection;
 LinekdList::SingleLinkedList* snakeHead;
 	public:
@@ -37,6 +39,8 @@ LinekdList::SingleLinkedList* snakeHead;
 		void ReSpwanSnake();
 		SnakeState GetSnakeState();
 		void CreateLinkedList();
+		void DelayedMovement();
+		
 		~SnakeController();
 	};
 }

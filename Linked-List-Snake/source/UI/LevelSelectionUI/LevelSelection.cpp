@@ -94,7 +94,7 @@ namespace UI
 		}
 		void LevelSelectionUI::levelOneButtonCallback()
 		{
-			std::cout << "LevelOne";
+			
 			ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::BUTTON_CLICK);
 			GameService::setGameState(GameState::GAMEPLAY);
 			ServiceLocator::getInstance()->GetLevelServices()->createLevel(Level::LevelNumber::ONE);

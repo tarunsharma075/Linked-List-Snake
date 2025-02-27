@@ -17,7 +17,7 @@ namespace Player {
 
 	void Player::BodyPart::Intialize(float width, float height, sf::Vector2i pos, Direction di)
 	{
-		ChangeRotation = width;
+		bodypartWidth = width;
 		bodyPartHeight = height;
 		gridPosition = pos;
 		direction = di;
@@ -39,13 +39,13 @@ namespace Player {
 	}
 	void BodyPart::IntializeBodyParts()
 	{
-		bodyPart->initialize(Global::Config::snake_body_texture_path, ChangeRotation, bodyPartHeight, BodyPartScreenPosition());
+		bodyPart->initialize(Global::Config::snake_body_texture_path, bodypartWidth, bodyPartHeight, BodyPartScreenPosition());
 		bodyPart->setOriginAtCentre();
 	}
 	sf::Vector2f BodyPart::BodyPartScreenPosition()
 	{
-		float xPosition = Level::LevelView::borderOffSetLeft + (gridPosition.x + ChangeRotation) + (ChangeRotation / 2);
-		float yPosition = Level::LevelView::borderOffSetTop + (gridPosition.y + bodyPartHeight) + (bodyPartHeight / 2);
+		float xPosition = Level::LevelView::borderOffSetLeft + (gridPosition.x * bodypartWidth) + (bodypartWidth / 2);
+		float yPosition = Level::LevelView::borderOffSetTop + (gridPosition.y * bodyPartHeight) + (bodyPartHeight / 2);
 		return sf::Vector2f(xPosition, yPosition);
 	}
 	sf::Vector2i BodyPart::GetNextPosition()
@@ -53,6 +53,7 @@ namespace Player {
 		switch(direction){	
 		case  Direction::UP:
 				return getNextPositionUp();
+
 			case Direction::DOWN:
 				return getNextPositionDown();
 			case Direction::LEFT:
@@ -88,6 +89,7 @@ namespace Player {
 	}
 	void BodyPart::UpdatePosition()
 	{
+		gridPosition = GetNextPosition();
 		bodyPart->setPosition(BodyPartScreenPosition());
 		bodyPart->setRotation(GetRotation());
 		bodyPart->update();
@@ -115,7 +117,7 @@ namespace Player {
 	}
 	void BodyPart::SetDirection(Direction DirectionToSet)
 	{
-		direction = DirectionToSet;
+		this->direction = DirectionToSet;
 	}
 	BodyPart::~BodyPart()
 	{
