@@ -19,5 +19,7 @@ namespace LinekdList {
 		
 		sf::Vector2i GetNewNodePosition(Player::Node*referenceNode);
 		void InsertNodeAtTail();
+		void UpdateSingleLinekdListDirection(Player::Direction directionToSet);
+		void UpdateSingleLinkedListPosition();
 	};
 }

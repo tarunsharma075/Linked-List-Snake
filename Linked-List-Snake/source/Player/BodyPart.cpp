@@ -113,6 +113,10 @@ namespace Player {
 	{
 		return gridPosition;
 	}
+	void BodyPart::SetDirection(Direction DirectionToSet)
+	{
+		direction = DirectionToSet;
+	}
 	BodyPart::~BodyPart()
 	{
 		Destroy();

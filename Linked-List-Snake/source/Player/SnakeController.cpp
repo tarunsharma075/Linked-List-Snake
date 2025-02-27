@@ -1,7 +1,9 @@
 #include"Player/SnakeController.h"
 #include"Global/ServiceLocator.h"
+#include"Event/EventService.h"
 
 using namespace Global;
+using namespace Event;
 using namespace LinekdList;
 namespace Player {
 	SnakeController::SnakeController()
@@ -21,9 +23,10 @@ namespace Player {
 	{
 		if (currentsnakeSate == SnakeState::ALIVE) {
 			ProcessPlayerInput();
-			HandelSnakeCollision();
 			UpdateSnakeDirection();
+			HandelSnakeCollision();
 			SnakeMovement();
+		
 
 
 		}
@@ -37,12 +40,28 @@ namespace Player {
 	}
 	void SnakeController::ProcessPlayerInput()
 	{
+		EventService* event = Global::ServiceLocator::getInstance()->getEventService();
+		if (event->pressedUpArrowKey() && currentSnakeDirection != Direction::DOWN) {
+			currentSnakeDirection = Direction::UP;
+		}
+		else if (event->pressedDownArrowKey() && currentSnakeDirection!= Direction::UP) {
+			currentSnakeDirection = Direction::DOWN;
+		}
+		else if (event->pressedLeftArrowKey() && currentSnakeDirection != Direction::RIGHT) {
+			currentSnakeDirection = Direction::LEFT;
+		}
+		else if (event->pressedRightArrowKey() && currentSnakeDirection != Direction::LEFT) {
+			currentSnakeDirection = Direction::RIGHT;
+		}
 	}
 	void SnakeController::UpdateSnakeDirection()
 	{
+		snakeHead->UpdateSingleLinekdListDirection(currentSnakeDirection);
 	}
 	void SnakeController::SnakeMovement()
 	{
+		snakeHead->UpdateSingleLinkedListPosition();
+
 	}
 	void SnakeController::HandelSnakeCollision()
 	{

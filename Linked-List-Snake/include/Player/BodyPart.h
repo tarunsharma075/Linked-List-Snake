@@ -33,7 +33,7 @@ namespace Player {
 			float GetRotation();
 			Direction GetDirection();
 			sf::Vector2i GetPosition();
-
+			void SetDirection(Direction DirectionToSet);
 
 			
 			~BodyPart();

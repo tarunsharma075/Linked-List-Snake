@@ -1,5 +1,6 @@
 #include"LinkedList/SingleLinkedList.h"
 #include"Player/Direction.h"
+#include<iostream>
 using namespace Player;
 namespace LinekdList {
 	Player::Node* SingleLinkedList::CreateNode()
@@ -72,6 +73,31 @@ namespace LinekdList {
 		currentNode->next = newNode;
 		newNode->bodyPart.Intialize(nodeWidth, nodeHeight, GetNewNodePosition(currentNode), currentNode->bodyPart.GetDirection());
 		
+	}
+
+	void SingleLinkedList::UpdateSingleLinekdListDirection(Player::Direction directionToSet)
+	{
+		std::cout << "The Change in direction is called";
+		Node* currentNode = headNode;
+		while (currentNode != nullptr) {
+
+			Direction previousDirection = currentNode->bodyPart.GetDirection();
+			currentNode->bodyPart.SetDirection(directionToSet);
+			directionToSet = previousDirection;
+			currentNode = currentNode->next;
+		}
+	}
+
+	void SingleLinkedList::UpdateSingleLinkedListPosition()
+	{
+		std::cout << "Update the position is called";
+
+		Node* currenNode = headNode;
+
+		while (currenNode != nullptr) {
+			currenNode->bodyPart.UpdatePosition();
+			currenNode = currenNode->next;
+		}
 	}
 	
 }
