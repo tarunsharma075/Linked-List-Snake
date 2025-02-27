@@ -99,5 +99,38 @@ namespace LinekdList {
 			currenNode = currenNode->next;
 		}
 	}
+
+	bool SingleLinkedList::CheckNodeCollision()
+	{
+		if (headNode == nullptr)
+			return false;
+		sf::Vector2i predictedPsoition = headNode->bodyPart.GetPosition();
+
+		Node* currentNode;
+		currentNode = headNode->next;
+		while (currentNode != nullptr) {
+			if (currentNode->bodyPart.GetPosition() == headNode->bodyPart.GetPosition()) return true;
+			std::cout << "collision detected" << std::endl;
+			currentNode = currentNode->next;
+
+		}
+		return false;
+	}
+
+	void SingleLinkedList::RemoveAllHead()
+	{
+		Node* currentNode = headNode;
+		headNode = headNode->next;
+		currentNode->next = nullptr;
+		delete(currentNode);
+	}
+
+	void SingleLinkedList::RemoveAllNodes()
+	{
+		if (headNode == nullptr)return;
+		while (headNode != nullptr) {
+			RemoveAllHead();
+		}
+	}
 	
 }

@@ -21,5 +21,8 @@ namespace LinekdList {
 		void InsertNodeAtTail();
 		void UpdateSingleLinekdListDirection(Player::Direction directionToSet);
 		void UpdateSingleLinkedListPosition();
+		bool CheckNodeCollision();
+		void RemoveAllHead();
+		void RemoveAllNodes();
 	};
 }

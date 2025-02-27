@@ -105,7 +105,9 @@ namespace Player {
 			ElapsedTime = 0.0f;
 			UpdateSnakeDirection();
 			HandelSnakeCollision();
-			SnakeMovement();
+			if (currentsnakeSate == SnakeState::ALIVE) {
+				SnakeMovement();
+			}
 		}
 	}
 	SnakeController::~SnakeController()
