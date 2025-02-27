@@ -47,10 +47,10 @@ namespace LinekdList {
 			return sf::Vector2i(positionReference.x, positionReference.y + 1);
 			break;
 		case Direction::LEFT:
-			return sf::Vector2i(positionReference.x - 1, positionReference.y);
+			return sf::Vector2i(positionReference.x +1, positionReference.y);
 			break;
 		case Direction::RIGHT:
-			return sf::Vector2i(positionReference.x + 1, positionReference.y);
+			return sf::Vector2i(positionReference.x -1, positionReference.y);
 			break;
 		default:
 			return gridPosition;

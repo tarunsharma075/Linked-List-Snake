@@ -1,6 +1,7 @@
 #include "Player/BodyPart.h"
 #include"Global/Config.h"
 #include"Level/LevelView.h"
+#include"Level/LevelModel.h"
 namespace Player {
 	void Player::BodyPart::CreateBodyParts()
 	{
@@ -69,24 +70,34 @@ namespace Player {
 	}
 	sf::Vector2i BodyPart::getNextPositionUp()
 	{
-		return sf::Vector2i(gridPosition.x,gridPosition.y-1);
+		return sf::Vector2i(gridPosition.x,
+			(gridPosition.y - 1 + Level::LevelModel::number_of_rows) % Level::LevelModel::number_of_rows);
 	}
+
 	sf::Vector2i BodyPart::getNextPositionDown()
 	{
-		return sf::Vector2i(gridPosition.x,gridPosition.y+1);
+		return sf::Vector2i(gridPosition.x,
+			(gridPosition.y == Level::LevelModel::number_of_rows - 1 ? 0 : gridPosition.y + 1));
 	}
+
 	sf::Vector2i BodyPart::getNextPositionLeft()
 	{
-		return sf::Vector2i(gridPosition.x-1,gridPosition.y);
+		return sf::Vector2i((gridPosition.x - 1 + Level::LevelModel::number_of_columns) % Level::LevelModel::number_of_columns,
+			gridPosition.y);
 	}
+
 	sf::Vector2i BodyPart::getNextPositioRight()
 	{
-		return sf::Vector2i(gridPosition.x+1,gridPosition.y);
+		return sf::Vector2i((gridPosition.x == Level::LevelModel::number_of_columns - 1 ? 0 : gridPosition.x + 1),
+			gridPosition.y);
 	}
+
 	void BodyPart::SetPosition(sf::Vector2i position)
 	{
-		position = gridPosition;
+		gridPosition = position;  // Fix: Ab correctly set hoga position
 	}
+
+
 	void BodyPart::UpdatePosition()
 	{
 		gridPosition = GetNextPosition();

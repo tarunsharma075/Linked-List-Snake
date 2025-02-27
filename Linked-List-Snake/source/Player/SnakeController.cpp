@@ -47,6 +47,7 @@ namespace Player {
 		EventService* event = Global::ServiceLocator::getInstance()->getEventService();
 		if (event->pressedUpArrowKey() && currentSnakeDirection != Direction::DOWN) {
 			currentSnakeDirection = Direction::UP;
+			
 		}
 		else if (event->pressedDownArrowKey() && currentSnakeDirection!= Direction::UP) {
 			currentSnakeDirection = Direction::DOWN;
