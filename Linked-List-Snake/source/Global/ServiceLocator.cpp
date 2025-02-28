@@ -2,15 +2,10 @@
 #include "Main/GameService.h"
 namespace Global
 {
-	using namespace Graphics;
-	using namespace Event;
-	using namespace Sound;
-	using namespace UI;
-	using namespace Time;
-	using namespace Level;
+	
 	using namespace Main;
-	using namespace Player;
-	using namespace Element;
+
+	
 	ServiceLocator::ServiceLocator()
 	{
 		graphic_service = nullptr;
