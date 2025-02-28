@@ -5,12 +5,12 @@ namespace Element {
 
 	enum class  ElementType {
 		
-		Obstacle,
+		OBSTACLE,
 	};
 
 	struct ElementData {
 
-		ElementData(Vector2i pos, ElementType type) {
+		ElementData(ElementType type, Vector2i pos) {
 			position = pos;
 			element = type;
 		}

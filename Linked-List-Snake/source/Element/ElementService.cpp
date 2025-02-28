@@ -34,7 +34,7 @@ namespace Element {
 	{
 		for (int i = 0; i < elementDataList.size(); i++) {
 			switch (elementDataList[i].element) {
-			case::Element::ElementType::Obstacle:
+			case::Element::ElementType::OBSTACLE:
 				SpawnObstacle(elementDataList[i].position, width, height);
 				break;
 			}
