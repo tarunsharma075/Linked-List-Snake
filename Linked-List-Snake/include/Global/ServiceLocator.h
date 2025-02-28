@@ -6,20 +6,22 @@
 #include "Time/TimeService.h"
 #include"Level/LevelService.h"
 #include"Player/PlayerService.h"
+#include"ELement/ElementService.h"
 
 namespace Global
 {
+
     class ServiceLocator
     {
     private:
         Event::EventService* event_service;
         Graphics::GraphicService* graphic_service;
-        Sound::SoundService* sound_service;
+       Sound::SoundService* sound_service;
         UI::UIService* ui_service;
         Time::TimeService* time_service;
         Level::LevelService* levelService;
         Player::PlayerService* playerService;
-        
+        Element::ElementService* elemetservice;
 
         ServiceLocator();
         ~ServiceLocator();
@@ -41,6 +43,7 @@ namespace Global
         Time::TimeService* getTimeService();
         Level::LevelService* GetLevelServices();
         Player::PlayerService* GetPlayerService();
+        Element::ElementService* GetElementService();
         void deleteServiceLocator();
     };
 }

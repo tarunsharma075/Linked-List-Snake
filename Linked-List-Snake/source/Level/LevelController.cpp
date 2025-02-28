@@ -1,6 +1,7 @@
 #include "../../include/Level/LevelController.h"
 #include"../../include/Level/LevelView.h"
 #include"../../include/Level/LevelModel.h"
+using namespace Element;
 namespace Level {
 	Level::LevelController::LevelController()
 	{
@@ -37,6 +38,10 @@ namespace Level {
 	int LevelController::GetCellWidth()
 	{
 		return levelModel->GetCellWidth();
+	}
+	const std::vector<Element::ElementData>& LevelController::GetElementDataList(int leveltoload)
+	{
+		return levelModel->GetElementDataList(leveltoload);
 	}
 	LevelController::~LevelController()
 	{

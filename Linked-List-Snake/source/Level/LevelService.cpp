@@ -30,6 +30,7 @@ namespace Level {
 	void LevelService::createLevel(LevelNumber level_to_load)
 	{
 		current_level = level_to_load;
+		SpawnLevelElements(level_to_load);
 		SpawPlayer();
 	}
 	float LevelService::GetCellHeight()
@@ -39,5 +40,13 @@ namespace Level {
 	float LevelService::GetCellWidth()
 	{
 		return levelController->GetCellWidth();
+	}
+	void LevelService::SpawnLevelElements(Level::LevelNumber leveltoload)
+	{
+		float Width = levelController->GetCellWidth();
+		float height = levelController->GetCellHeight();
+
+		std::vector<Element::ElementData>elementList = levelController->GetElementDataList((int)leveltoload);
+		ServiceLocator::getInstance()->GetElementService()->SpawnElements(elementList, Width, height);
 	}
 }
