@@ -11,9 +11,14 @@ namespace Food {
 void FoodService::Intialize()
 {
 	
+	
 }
 void FoodService::Update()
 {
+	if (CurrentStatus == FoodSpawningStatus::ACTIVE) {
+		UpdateElapsedDuration();
+		handelfoodSpawing();
+	}
 	if(currentFoodItem)
 	currentFoodItem->Update();
 }
@@ -22,8 +27,13 @@ void FoodService::Render()
 	if(currentFoodItem)
 	currentFoodItem->Render();
 }
+void FoodService::reset()
+{
+	ElapsedTime = 0.f;
+}
 void FoodService::StartSpwanFood()
 {
+	CurrentStatus == FoodSpawningStatus::ACTIVE;
 	width = Global::ServiceLocator::getInstance()->GetLevelServices()->GetCellWidth();
 	 height = Global::ServiceLocator::getInstance()->GetLevelServices()->GetCellHeight();
 	spawnfood();
@@ -73,6 +83,34 @@ FoodType FoodService::GetRandomFood()
 {
 	std::uniform_int_distribution<int> foodDistribution(0, FoodItem::numberOfFoods);
 	return static_cast<FoodType>(foodDistribution(randomEngine));
+}
+
+void FoodService::UpdateElapsedDuration()
+{
+	ElapsedTime += Global::ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+}
+
+void FoodService::handelfoodSpawing()
+{
+	if (ElapsedTime >= spawnDuration) {
+		destroyfood();
+		reset();
+		spawnfood();
+		
+	}
+}
+
+void FoodService::StopSpawningFood()
+{
+	CurrentStatus = FoodSpawningStatus::IN_ACTIVE;
+	destroyfood();
+	reset();
+
+}
+
+void FoodService::destroyfood()
+{
+	delete(currentFoodItem);
 }
 
 FoodService::~FoodService()
