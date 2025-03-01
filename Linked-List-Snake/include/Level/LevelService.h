@@ -16,6 +16,7 @@ namespace Level {
 		void createLevel(LevelNumber level_to_load);
 		float GetCellHeight();
 		float GetCellWidth();
+		void Spawnfood();
 		void SpawnLevelElements(Level::LevelNumber leveltoload);
 	};
 }

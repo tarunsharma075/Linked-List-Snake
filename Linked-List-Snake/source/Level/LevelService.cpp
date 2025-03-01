@@ -31,6 +31,7 @@ namespace Level {
 	{
 		current_level = level_to_load;
 		SpawnLevelElements(level_to_load);
+		Spawnfood();
 		SpawPlayer();
 	}
 	float LevelService::GetCellHeight()
@@ -40,6 +41,10 @@ namespace Level {
 	float LevelService::GetCellWidth()
 	{
 		return levelController->GetCellWidth();
+	}
+	void LevelService::Spawnfood()
+	{
+		Global::ServiceLocator::getInstance()->GetFoodService()->StartSpwanFood();
 	}
 	void LevelService::SpawnLevelElements(Level::LevelNumber leveltoload)
 	{
