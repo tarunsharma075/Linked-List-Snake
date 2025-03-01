@@ -1,6 +1,7 @@
 #pragma once
 #include"LinkedList/Node.h"
 #include"Player/Direction.h"
+#include<vector>
 namespace LinekdList {
 	class  SingleLinkedList {
 	private:
@@ -24,5 +25,6 @@ namespace LinekdList {
 		bool CheckNodeCollision();
 		void RemoveAllHead();
 		void RemoveAllNodes();
+		std::vector<sf::Vector2i>  GetNodePosition();
 	};
 }

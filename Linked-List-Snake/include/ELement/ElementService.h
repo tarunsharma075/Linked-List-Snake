@@ -16,6 +16,7 @@ namespace Element {
 		void Update();
 		void SpawnObstacle(sf::Vector2i pos, float width, float height);
 		const void SpawnElements(std::vector<ElementData>& elementDataList, float width, float height);
+		std::vector<sf::Vector2i> GetElemetpsoitionList();
 		~ElementService();
 	};
 }

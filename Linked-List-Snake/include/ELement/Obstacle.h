@@ -18,6 +18,8 @@ namespace Element {
 		void Update();
 		void createObstacleImage();
 		sf::Vector2f getObstacleImagePsoition();
+		sf::Vector2i GetElemetPsoition();
+		
 		~Obstacle();
 		
 };

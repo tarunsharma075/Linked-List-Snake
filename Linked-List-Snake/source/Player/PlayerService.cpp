@@ -21,6 +21,10 @@ namespace Player {
 	{
 		snake->SpawnSnake();
 	}
+	std::vector<sf::Vector2i> PlayerService::GetSnakePsoition()
+	{
+		return snake->GetSnakepsoition();
+	}
 	PlayerService::~PlayerService()
 	{
 		delete(snake);

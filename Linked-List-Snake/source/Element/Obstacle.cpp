@@ -34,6 +34,12 @@ namespace Element {
 		float yScreenPsoition = Level::LevelView::borderOffSetTop + (obstacleHeight * obstaclePosition.y);
 		return sf::Vector2f(xScreenPsoition, yScreenPsoition);
 	}
+
+	sf::Vector2i Obstacle::GetElemetPsoition()
+	{
+		return obstaclePosition;
+	}
+	
 	Obstacle::~Obstacle()
 	{
 		delete(obstacle);

@@ -1,4 +1,6 @@
 #pragma once
+#include<vector>
+#include<SFML/System/Vector2.hpp>
 namespace Player {
 	class SnakeController;
 	class PlayerService {
@@ -10,6 +12,7 @@ namespace Player {
 		void Update();
 		void Render();
 		void SpawnPlayer();
+		std::vector<sf::Vector2i> GetSnakePsoition();
 		~PlayerService();
 	};
 }

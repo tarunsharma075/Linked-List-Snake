@@ -41,6 +41,16 @@ namespace Element {
 				
 		}
 	}
+	std::vector<sf::Vector2i> ElementService::GetElemetpsoitionList()
+	{
+		std::vector<Vector2i>elementPositionList;
+		for (int i = 0; i < obstaclelist.size(); i++) {
+
+			elementPositionList.push_back(obstaclelist[i]->GetElemetPsoition());
+	}
+		return elementPositionList;
+	}
+
 	ElementService::~ElementService()
 	{
 	}

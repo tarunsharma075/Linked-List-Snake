@@ -2,8 +2,9 @@
 #include"Food/FoodItem.h"
 #include"Global/ServiceLocator.h"
 #include"Food/FoodType.h"
+#include"Level/LevelModel.h"
 namespace Food {
-Food::FoodService::FoodService()
+	Food::FoodService::FoodService() :randomEngine(randomDevice())
 {
 	currentFoodItem = nullptr;
 }
@@ -37,7 +38,41 @@ FoodItem* FoodService::CreateFood(sf::Vector2i position, FoodType type)
 
 void FoodService::spawnfood()
 {
-	currentFoodItem = CreateFood(sf::Vector2i(4, 6), FoodType::BURGER);
+	currentFoodItem = CreateFood(GetValidSpawnPoint(), GetRandomFood());
+}
+
+sf::Vector2i FoodService::GetRandomPosition()
+{
+	std::uniform_int_distribution<int>xDistribution(0, Level::LevelModel::number_of_columns - 1);
+	std::uniform_int_distribution<int>yDistribution(0, Level::LevelModel::number_of_rows - 1);
+	int xposition = xDistribution(randomEngine);
+	int yPosition = yDistribution(randomEngine);
+	return sf::Vector2i(xposition, yPosition);
+}
+
+bool FoodService::IsPositionValid(std::vector<sf::Vector2i> playerPosition, sf::Vector2i foodPsoition)
+{
+	for (int i = 0; i < playerPosition.size(); i++) {
+		if (foodPsoition == playerPosition[i])
+			return false;
+	}
+	return true;
+}
+
+sf::Vector2i FoodService::GetValidSpawnPoint()
+{
+	std::vector<sf::Vector2i> playerposition = Global::ServiceLocator::getInstance()->GetPlayerService()->GetSnakePsoition();
+	std::vector<sf::Vector2i> elementPosition = Global::ServiceLocator::getInstance()->GetElementService()->GetElemetpsoitionList();
+	sf::Vector2i spawnPosition;
+	do spawnPosition = GetRandomPosition();
+	while (!IsPositionValid(playerposition, spawnPosition) || !IsPositionValid(elementPosition, spawnPosition));
+	return spawnPosition;
+}
+
+FoodType FoodService::GetRandomFood()
+{
+	std::uniform_int_distribution<int> foodDistribution(0, FoodItem::numberOfFoods);
+	return static_cast<FoodType>(foodDistribution(randomEngine));
 }
 
 FoodService::~FoodService()

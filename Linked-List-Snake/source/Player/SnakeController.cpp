@@ -133,6 +133,10 @@ namespace Player {
 			}
 		}
 	}
+	std::vector<sf::Vector2i> SnakeController::GetSnakepsoition()
+	{
+		return snakeHead->GetNodePosition();
+	}
 	SnakeController::~SnakeController()
 	{
 		snakeHead->RemoveAllHead();

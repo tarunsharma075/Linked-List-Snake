@@ -48,6 +48,7 @@ LinekdList::SingleLinkedList* snakeHead;
 		SnakeState GetSnakeState();
 		void CreateLinkedList();
 		void DelayedMovement();
+		std::vector<sf::Vector2i> GetSnakepsoition();
 		
 		
 		~SnakeController();

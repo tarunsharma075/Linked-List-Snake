@@ -11,6 +11,7 @@ namespace Food {
 		float foodWidth;
 		float foodHeight;
 		FoodType foodType;
+		static const int foodNumber =8;
 	public:
 		FoodItem();
 		static const int numberOfFoods = 8;

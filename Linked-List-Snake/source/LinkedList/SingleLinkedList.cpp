@@ -132,5 +132,17 @@ namespace LinekdList {
 			RemoveAllHead();
 		}
 	}
+
+	std::vector<sf::Vector2i> SingleLinkedList::GetNodePosition()
+	{
+		Node* currentNode;
+		currentNode = headNode;
+		std::vector<sf::Vector2i> nodePositionList;
+		while (currentNode != nullptr) {
+			nodePositionList.push_back(currentNode->bodyPart.GetPosition());
+			currentNode = currentNode->next;
+		}
+		return nodePositionList;
+	}
 	
 }
