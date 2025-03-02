@@ -3,6 +3,8 @@
 #include"Event/EventService.h"
 #include<iostream>
 #include"Time/TimeService.h"
+#include"Sound/SoundService.h"
+using namespace Sound;
 using namespace Global;
 using namespace Event;
 using namespace LinekdList;
@@ -78,9 +80,9 @@ namespace Player {
 	}
 	void SnakeController::HandelSnakeCollision()
 	{
-		if (snakeHead->CheckNodeCollision()) {
-			currentsnakeSate = SnakeState::DEAD;
-		}
+		SnakeBodyCollision();
+		SnakeFoodCollision();
+		SnakeElementCollision();
 	}
 	void SnakeController::handelReset()
 	{
@@ -136,6 +138,19 @@ namespace Player {
 	std::vector<sf::Vector2i> SnakeController::GetSnakepsoition()
 	{
 		return snakeHead->GetNodePosition();
+	}
+	void SnakeController::SnakeBodyCollision()
+	{
+		if (snakeHead->CheckNodeCollision()) {
+			currentsnakeSate = SnakeState::DEAD;
+			Global::ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::DEATH);
+		}
+	}
+	void SnakeController::SnakeElementCollision()
+	{
+	}
+	void SnakeController::SnakeFoodCollision()
+	{
 	}
 	SnakeController::~SnakeController()
 	{
