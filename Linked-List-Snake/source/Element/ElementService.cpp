@@ -51,6 +51,17 @@ namespace Element {
 		return elementPositionList;
 	}
 
+	bool ElementService::ProcessElementCollision(LinekdList::Node* headNode)
+	{
+		for (int i = 0; i < obstaclelist.size(); i++) {
+			if (obstaclelist[i]->GetElemetPsoition() == headNode->bodyPart.GetPosition() || 
+				obstaclelist[i]->GetElemetPsoition()== headNode->bodyPart.GetNextPosition()){
+				return true;
+			}
+		}
+		return false;
+	}
+
 	ElementService::~ElementService()
 	{
 	}

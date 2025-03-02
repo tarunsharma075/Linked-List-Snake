@@ -1,6 +1,7 @@
 #pragma once
 #include"Player/BodyPart.h"
-namespace Player {
+using namespace Player;
+namespace LinekdList {
 
 	struct Node {
 		BodyPart bodyPart;

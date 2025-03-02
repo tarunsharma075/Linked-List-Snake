@@ -68,6 +68,14 @@ namespace Food {
 
 
 	}
+	sf::Vector2i FoodItem::GetPsoitionOfFood()
+	{
+		return gridPosition;
+	}
+	FoodType FoodItem::GetCurrentFoodType()
+	{
+		return foodType;
+	}
 	FoodItem::~FoodItem()
 	{
 		delete(foodImage);

@@ -5,12 +5,12 @@
 namespace LinekdList {
 	class  SingleLinkedList {
 	private:
-		Player::Node* headNode;
+		Node* headNode;
 		float nodeWidth;
 		float nodeHeight;
 		sf::Vector2i gridPosition;
 		Player::Direction SnakeDirection;
-	Player::Node* CreateNode();
+	 Node* CreateNode();
 
 	public:
 		SingleLinkedList();
@@ -18,13 +18,14 @@ namespace LinekdList {
 		void Intialize(float width, float height, sf::Vector2i position, Player::Direction direction);
 		void Render();
 		
-		sf::Vector2i GetNewNodePosition(Player::Node*referenceNode);
+		sf::Vector2i GetNewNodePosition(Node*referenceNode);
 		void InsertNodeAtTail();
 		void UpdateSingleLinekdListDirection(Player::Direction directionToSet);
 		void UpdateSingleLinkedListPosition();
 		bool CheckNodeCollision();
 		void RemoveAllHead();
 		void RemoveAllNodes();
+		Node* GetHeadNode();
 		std::vector<sf::Vector2i>  GetNodePosition();
 	};
 }

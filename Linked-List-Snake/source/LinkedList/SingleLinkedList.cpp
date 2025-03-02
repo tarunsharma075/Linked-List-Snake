@@ -3,9 +3,9 @@
 #include<iostream>
 using namespace Player;
 namespace LinekdList {
-	Player::Node* SingleLinkedList::CreateNode()
+	Node* SingleLinkedList::CreateNode()
 	{
-		return new Player::Node;
+		return new Node;
 	}
 	LinekdList::SingleLinkedList::SingleLinkedList()
 	{
@@ -33,7 +33,7 @@ namespace LinekdList {
 		}
 	}
 	
-	sf::Vector2i SingleLinkedList::GetNewNodePosition(Player::Node* referenceNode)
+	sf::Vector2i SingleLinkedList::GetNewNodePosition(Node* referenceNode)
 	{
 		Direction directionReference = referenceNode->bodyPart.GetDirection();
 		sf::Vector2i positionReference= referenceNode->bodyPart.GetPosition();
@@ -131,6 +131,11 @@ namespace LinekdList {
 		while (headNode != nullptr) {
 			RemoveAllHead();
 		}
+	}
+
+	Node* SingleLinkedList::GetHeadNode()
+	{
+		return headNode;
 	}
 
 	std::vector<sf::Vector2i> SingleLinkedList::GetNodePosition()

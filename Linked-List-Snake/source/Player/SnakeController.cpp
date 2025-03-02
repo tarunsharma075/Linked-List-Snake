@@ -4,11 +4,13 @@
 #include<iostream>
 #include"Time/TimeService.h"
 #include"Sound/SoundService.h"
+#include"ELement/ElementService.h"
 using namespace Sound;
 using namespace Global;
 using namespace Event;
 using namespace LinekdList;
 using namespace Time;
+using namespace Element;
 namespace Player {
 	SnakeController::SnakeController()
 	{
@@ -148,6 +150,12 @@ namespace Player {
 	}
 	void SnakeController::SnakeElementCollision()
 	{
+		ElementService* elementService = Global::ServiceLocator::getInstance()->GetElementService();
+
+		if (elementService->ProcessElementCollision(snakeHead->GetHeadNode())) {
+			currentsnakeSate = SnakeState::DEAD;
+			Global::ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::DEATH);
+		}
 	}
 	void SnakeController::SnakeFoodCollision()
 	{

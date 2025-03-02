@@ -81,7 +81,7 @@ sf::Vector2i FoodService::GetValidSpawnPoint()
 
 FoodType FoodService::GetRandomFood()
 {
-	std::uniform_int_distribution<int> foodDistribution(0, FoodItem::numberOfFoods);
+	std::uniform_int_distribution<int> foodDistribution(0, FoodItem::numberOfFoods-1);
 	return static_cast<FoodType>(foodDistribution(randomEngine));
 }
 

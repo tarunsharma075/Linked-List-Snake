@@ -1,5 +1,6 @@
 #pragma once
 
+#include"LinkedList/SingleLinkedList.h"
 #include"SFML/System/Vector2.hpp"
 #include<vector>
 namespace Element {
@@ -17,6 +18,7 @@ namespace Element {
 		void SpawnObstacle(sf::Vector2i pos, float width, float height);
 		const void SpawnElements(std::vector<ElementData>& elementDataList, float width, float height);
 		std::vector<sf::Vector2i> GetElemetpsoitionList();
+		bool  ProcessElementCollision(LinekdList::Node* headNode);
 		~ElementService();
 	};
 }
