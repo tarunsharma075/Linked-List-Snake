@@ -37,5 +37,7 @@ namespace LinekdList {
 		sf::Vector2i NewNodePosition(Node* referenceNode, Operation currentOperation);
 		 void IntializeNewNode(Node* newNode, Node* refrennceNode, Operation operation);
 		 void InsertNodeAtHead();
+		 void InsertAtIndex(int index);
+		 void ShiftNodesAfterInsertion(Node* newNode, Node* currentNode, Node* prevNode);
 	};
 }

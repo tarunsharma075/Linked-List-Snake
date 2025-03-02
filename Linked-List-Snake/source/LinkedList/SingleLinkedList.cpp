@@ -60,19 +60,20 @@ namespace LinekdList {
 	}
 	void SingleLinkedList::InsertNodeAtTail()
 	{
+		linkedListSize++;
 		Node*newNode = CreateNode();
 		Node* currentNode = headNode;
 
 		if (currentNode == nullptr) {
 			headNode = newNode;
-			newNode->bodyPart.Intialize(nodeWidth, nodeHeight, gridPosition, SnakeDirection);
+			IntializeNewNode(newNode, nullptr, Operation::TAIL);
 			return;
 		}
 		while (currentNode->next != nullptr) {
 			currentNode = currentNode->next;
 	}
 		currentNode->next = newNode;
-		newNode->bodyPart.Intialize(nodeWidth, nodeHeight, GetNewNodePosition(currentNode), currentNode->bodyPart.GetDirection());
+		IntializeNewNode(newNode, currentNode, Operation::TAIL);
 		
 	}
 
@@ -190,6 +191,46 @@ namespace LinekdList {
 		IntializeNewNode(newNOde, headNode, Operation::HEAD);
 		newNOde->next = headNode;
 		headNode = newNOde;
+	}
+
+	void SingleLinkedList::InsertAtIndex(int index)
+	{
+		Node* newNode;
+		
+		if (index < 0 || index >= linkedListSize)return;
+		if (index == 0) {
+			InsertNodeAtHead();
+		}
+		newNode = CreateNode();
+		int currentIndex = 0;
+		Node* currentnode = headNode;
+		Node* prevNode = nullptr;
+		while (currentnode != nullptr && currentIndex <index) {
+			prevNode = currentnode;
+			currentnode = currentnode->next;
+			currentIndex++;
+				
+		}
+		prevNode->next = newNode;
+		newNode->next = currentnode;
+		IntializeNewNode(newNode, currentnode, Operation::TAIL);
+		linkedListSize++;
+		ShiftNodesAfterInsertion(newNode, currentnode, prevNode);
+	}
+
+	void SingleLinkedList::ShiftNodesAfterInsertion(Node* newNode, Node* currentNode, Node* prevNode)
+	{
+		Node* nextNode = currentNode;
+		currentNode = newNode;
+
+		while (currentNode != nullptr && nextNode != nullptr) {
+			currentNode->bodyPart.SetPosition(nextNode->bodyPart.GetPosition());
+			currentNode->bodyPart.SetDirection(nextNode->bodyPart.GetDirection());
+			prevNode = currentNode;
+			currentNode = nextNode;
+			nextNode = nextNode->next;
+		}
+		IntializeNewNode(currentNode, prevNode, Operation::TAIL);
 	}
 	
 }
