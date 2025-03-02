@@ -39,5 +39,7 @@ namespace LinekdList {
 		 void InsertNodeAtHead();
 		 void InsertAtIndex(int index);
 		 void ShiftNodesAfterInsertion(Node* newNode, Node* currentNode, Node* prevNode);
+		 int FindTheMiddleIndex();
+		 void InsertNodeInMiddle();
 	};
 }

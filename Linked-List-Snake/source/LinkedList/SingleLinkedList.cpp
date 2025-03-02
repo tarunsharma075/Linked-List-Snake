@@ -232,5 +232,32 @@ namespace LinekdList {
 		}
 		IntializeNewNode(currentNode, prevNode, Operation::TAIL);
 	}
+
+	int SingleLinkedList::FindTheMiddleIndex()
+	{
+		Node* slow = headNode;
+		Node* fast = headNode;
+
+		int middleIndex;
+
+		while (fast != nullptr && fast->next != nullptr) {
+
+			slow = slow->next;
+			fast = fast->next->next;
+			middleIndex++;
+		}
+		return middleIndex;
+	}
+
+	void SingleLinkedList::InsertNodeInMiddle()
+	{
+		if (headNode == nullptr) {
+			InsertNodeAtHead();
+			return;
+		}
+
+		int middleindex = FindTheMiddleIndex();
+		InsertAtIndex(middleindex);
+	}
 	
 }
