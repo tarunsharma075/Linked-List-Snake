@@ -28,6 +28,7 @@ namespace Player {
 			sf::Vector2i getNextPositionDown();
 			sf::Vector2i getNextPositionLeft();
 			sf::Vector2i getNextPositioRight();
+			sf::Vector2i GetPreviousPosition();
 			void SetPosition(sf::Vector2i position);
 			void UpdatePosition();
 			float GetRotation();

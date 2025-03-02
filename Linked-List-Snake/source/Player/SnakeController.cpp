@@ -5,12 +5,14 @@
 #include"Time/TimeService.h"
 #include"Sound/SoundService.h"
 #include"ELement/ElementService.h"
+#include"Food/FoodType.h"
 using namespace Sound;
 using namespace Global;
 using namespace Event;
 using namespace LinekdList;
 using namespace Time;
 using namespace Element;
+using namespace Food;
 namespace Player {
 	SnakeController::SnakeController()
 	{
@@ -159,6 +161,49 @@ namespace Player {
 	}
 	void SnakeController::SnakeFoodCollision()
 	{
+		FoodService* foodService = ServiceLocator::getInstance()->GetFoodService();
+		FoodType foodType;
+		if (foodService->ProcessFoodCollision(snakeHead->GetHeadNode(), foodType)) {
+
+			foodService->destroyfood();
+			OnFoodCollsion(foodType);
+		}
+	}
+	void SnakeController::OnFoodCollsion(Food::FoodType food)
+	{
+		switch (food) {
+		case FoodType::PIZZA:
+			//Insert At Tail
+			break;
+
+		case FoodType::BURGER:
+			//Insert At Head
+			break;
+
+		case FoodType::CHEESE:
+			//Insert in Middle
+			break;
+
+		case FoodType::APPLE:
+			//Delete at Head
+			break;
+
+		case FoodType::MANGO:
+			//Delete at Middle
+			break;
+
+		case FoodType::ORANGE:
+			//Delete at Tail
+			break;
+
+		case FoodType::POISION:
+			//Delete half the snake
+			break;
+
+		case FoodType::ALCOHOL:
+			//Reverse the snake
+			break;
+		}
 	}
 	SnakeController::~SnakeController()
 	{

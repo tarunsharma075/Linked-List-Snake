@@ -3,6 +3,12 @@
 #include"Player/Direction.h"
 #include<vector>
 namespace LinekdList {
+	enum class Operation {
+
+		HEAD,
+		MIDDLE,
+		TAIL,
+	};
 	class  SingleLinkedList {
 	private:
 		Node* headNode;
@@ -10,6 +16,7 @@ namespace LinekdList {
 		float nodeHeight;
 		sf::Vector2i gridPosition;
 		Player::Direction SnakeDirection;
+		int linkedListSize;
 	 Node* CreateNode();
 
 	public:
@@ -27,5 +34,8 @@ namespace LinekdList {
 		void RemoveAllNodes();
 		Node* GetHeadNode();
 		std::vector<sf::Vector2i>  GetNodePosition();
+		sf::Vector2i NewNodePosition(Node* referenceNode, Operation currentOperation);
+		 void IntializeNewNode(Node* newNode, Node* refrennceNode, Operation operation);
+		 void InsertNodeAtHead();
 	};
 }

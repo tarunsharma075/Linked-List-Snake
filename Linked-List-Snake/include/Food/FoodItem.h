@@ -21,6 +21,8 @@ namespace Food {
 		sf::String GetFoodTexturePath();
 		sf::Vector2f GetFoodPosition();
 		void IntializeFoodImage();
+		sf::Vector2i GetPsoitionOfFood();
+		FoodType GetCurrentFoodType();
 		~FoodItem();
 	};
 }

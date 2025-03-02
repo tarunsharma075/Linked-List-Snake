@@ -22,6 +22,7 @@ namespace LinekdList {
 		gridPosition = position;
 		SnakeDirection = direction;
 		CreateNode();
+		linkedListSize = 0;
 	}
 	void SingleLinkedList::Render()
 	{
@@ -148,6 +149,47 @@ namespace LinekdList {
 			currentNode = currentNode->next;
 		}
 		return nodePositionList;
+	}
+
+	sf::Vector2i SingleLinkedList::NewNodePosition(Node* referenceNode, Operation currentOperation)
+	{
+		switch (currentOperation) {
+		case Operation::HEAD:
+			return referenceNode->bodyPart.GetNextPosition();
+		
+		//case Operation::MIDDLE:
+		//	//
+		case Operation::TAIL:
+			return referenceNode->bodyPart.GetPreviousPosition();
+			
+		}
+
+		return gridPosition;
+	}
+
+	void  SingleLinkedList::IntializeNewNode(Node* newNode, Node* refrennceNode, Operation operation)
+	{
+		if (refrennceNode == nullptr) {
+			newNode->bodyPart.Intialize(nodeWidth, nodeHeight, gridPosition, SnakeDirection);
+			return;
+		}
+		sf::Vector2i position = NewNodePosition(refrennceNode, operation);
+		newNode->bodyPart.Intialize(nodeWidth, nodeHeight, position, refrennceNode->bodyPart.GetDirection());
+	}
+
+	void SingleLinkedList::InsertNodeAtHead()
+	{
+		linkedListSize++;
+		Node* newNOde = CreateNode();
+		if (headNode == nullptr) {
+			headNode = newNOde;
+			IntializeNewNode(newNOde, nullptr, Operation::HEAD);
+			return;
+		}
+
+		IntializeNewNode(newNOde, headNode, Operation::HEAD);
+		newNOde->next = headNode;
+		headNode = newNOde;
 	}
 	
 }

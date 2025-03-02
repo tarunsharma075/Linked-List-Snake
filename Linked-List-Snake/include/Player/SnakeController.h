@@ -52,6 +52,7 @@ LinekdList::SingleLinkedList* snakeHead;
 		void SnakeBodyCollision();
 		void SnakeElementCollision();
 		void SnakeFoodCollision();
+		void OnFoodCollsion(Food::FoodType food);
 		
 		~SnakeController();
 	};

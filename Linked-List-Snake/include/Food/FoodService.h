@@ -37,6 +37,7 @@ namespace Food {
 		void handelfoodSpawing();
 		void StopSpawningFood();
 		void destroyfood();
+		bool ProcessFoodCollision(LinekdList::Node*headNode,Food::FoodType& food);
 		~FoodService();
 	};
 }

@@ -113,6 +113,15 @@ void FoodService::destroyfood()
 	delete(currentFoodItem);
 }
 
+bool FoodService::ProcessFoodCollision(LinekdList::Node* headNode, Food::FoodType& food)
+{
+	if (currentFoodItem && currentFoodItem->GetPsoitionOfFood() == headNode->bodyPart.GetPosition()) {
+		food = currentFoodItem->GetCurrentFoodType();
+		return true;
+	}
+	return false;
+}
+
 FoodService::~FoodService()
 {
 	delete(currentFoodItem);
