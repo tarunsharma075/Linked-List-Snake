@@ -121,6 +121,7 @@ namespace LinekdList {
 
 	void SingleLinkedList::RemoveAllHead()
 	{
+		linkedListSize--;
 		Node* currentNode = headNode;
 		headNode = headNode->next;
 		currentNode->next = nullptr;
