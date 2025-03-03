@@ -11,7 +11,6 @@ namespace Food {
 void FoodService::Intialize()
 {
 	
-	
 }
 void FoodService::Update()
 {
