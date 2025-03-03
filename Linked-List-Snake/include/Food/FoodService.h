@@ -1,6 +1,7 @@
 #pragma once
 #include"SFML/System/Vector2.hpp"
 #include<random>
+#include"LinkedList/Node.h"
 namespace Food {
 	enum FoodSpawningStatus
 	{
@@ -8,6 +9,7 @@ namespace Food {
 		IN_ACTIVE,
 	};
 	class FoodItem;
+	
 	enum class FoodType;
 	class FoodService {
 
@@ -40,4 +42,5 @@ namespace Food {
 		bool ProcessFoodCollision(LinekdList::Node*headNode,Food::FoodType& food);
 		~FoodService();
 	};
+
 }

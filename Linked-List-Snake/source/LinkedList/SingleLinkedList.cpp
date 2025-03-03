@@ -240,7 +240,7 @@ namespace LinekdList {
 		Node* slow = headNode;
 		Node* fast = headNode;
 
-		int middleIndex;
+		int middleIndex=0;
 
 		while (fast != nullptr && fast->next != nullptr) {
 

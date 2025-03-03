@@ -2,6 +2,7 @@
 #include<SFML/Graphics.hpp>
 #include"Player/Direction.h"
 #include"LinkedList/SingleLinkedList.h"
+#include"Food/FoodType.h"
 namespace Player {
 	
 	
