@@ -134,6 +134,7 @@ namespace LinekdList {
 		while (headNode != nullptr) {
 			RemoveAllHead();
 		}
+
 	}
 
 	Node* SingleLinkedList::GetHeadNode()
@@ -260,5 +261,62 @@ namespace LinekdList {
 		int middleindex = FindTheMiddleIndex();
 		InsertAtIndex(middleindex);
 	}
+
+	void SingleLinkedList::ShitNodesAfterRemoval(Node* currentNode)
+	{
+		sf::Vector2i previousNodePosition = currentNode->bodyPart.GetPosition();
+		Direction previousNodeDirection = currentNode->bodyPart.GetDirection();
+		currentNode = currentNode->next;
+		while(currentNode!=nullptr){
+
+			sf::Vector2i tempPosition = currentNode->bodyPart.GetPosition();
+			Direction tempDirection = currentNode->bodyPart.GetDirection();
+
+			currentNode->bodyPart.SetPosition(previousNodePosition);
+			currentNode->bodyPart.SetDirection(previousNodeDirection);
+
+			currentNode = currentNode->next;
+			previousNodePosition = tempPosition;
+			previousNodeDirection = tempDirection;
+
+
+	}
+	}
+
+	void SingleLinkedList::RemoveNodeAt(int index)
+	{
+		if (index<0 || index>=linkedListSize) return;
+
+		if (index == 0) {
+			RemoveAllHead();
+		}
+
+		RemoveNodeAtInedx(index);
+	}
+
+	void SingleLinkedList::RemoveNodeAtInedx(int Index)
+	{
+		Node* currentNode = headNode;
+		Node* prevNode = nullptr;
+		int currentIndex = 0;
+
+		while (currentNode != nullptr && currentIndex < Index) {
+
+			prevNode = currentNode;
+			currentNode = currentNode->next;
+			currentIndex++;
+		}
+		prevNode->next = currentNode->next;
+		ShitNodesAfterRemoval(currentNode);
+		linkedListSize--;
+	}
+
+	void SingleLinkedList::RemovePartAtMiddle()
+	{
+		if (headNode == nullptr)return;
+		int midIndex = FindTheMiddleIndex();
+		RemoveNodeAt(midIndex);
+	}
+	
 	
 }

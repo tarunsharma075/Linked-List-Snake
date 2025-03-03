@@ -41,5 +41,9 @@ namespace LinekdList {
 		 void ShiftNodesAfterInsertion(Node* newNode, Node* currentNode, Node* prevNode);
 		 int FindTheMiddleIndex();
 		 void InsertNodeInMiddle();
+		 void ShitNodesAfterRemoval(Node* currentNode);
+		 void RemoveNodeAt(int index);
+		 void RemoveNodeAtInedx(int Index);
+		 void RemovePartAtMiddle();
 	};
 }
