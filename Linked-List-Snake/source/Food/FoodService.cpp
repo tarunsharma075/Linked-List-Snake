@@ -109,7 +109,8 @@ void FoodService::StopSpawningFood()
 
 void FoodService::destroyfood()
 {
-	delete(currentFoodItem);
+	if (currentFoodItem)delete(currentFoodItem);
+	currentFoodItem = nullptr;
 }
 
 bool FoodService::ProcessFoodCollision(LinekdList::Node* headNode, Food::FoodType& food)
@@ -123,6 +124,6 @@ bool FoodService::ProcessFoodCollision(LinekdList::Node* headNode, Food::FoodTyp
 
 FoodService::~FoodService()
 {
-	delete(currentFoodItem);
+	destroyfood();
 }
 }

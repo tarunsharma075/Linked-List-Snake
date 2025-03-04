@@ -317,6 +317,23 @@ namespace LinekdList {
 		int midIndex = FindTheMiddleIndex();
 		RemoveNodeAt(midIndex);
 	}
+
+	void SingleLinkedList::RemoveNodeAttail()
+	{
+		if (headNode == nullptr)return;
+
+		Node* currentNode;
+		currentNode = headNode;
+		if (currentNode->next == nullptr) {
+			RemoveAllHead();
+			return;
+		}
+		while (currentNode->next->next != nullptr) {
+			currentNode = currentNode->next;
+		}
+		delete(currentNode->next);
+		currentNode->next = nullptr;
+	}
 	
 	
 }
