@@ -334,6 +334,41 @@ namespace LinekdList {
 		delete(currentNode->next);
 		currentNode->next = nullptr;
 	}
+
+	Node* SingleLinkedList::FindNodeAtIndex(int index)
+	{
+		if (headNode == nullptr)return;
+		if (headNode->next == nullptr) {
+			RemoveAllHead();
+		}
+		Node* currentNode = headNode;
+		Node* prevNode = nullptr;
+		int currentIndex = 0;
+		while (currentNode != nullptr && currentIndex <= index) {
+			prevNode = currentNode;
+			currentNode = currentNode->next;
+			currentIndex++;
+		}
+		return prevNode;
+	}
+
+	void SingleLinkedList::RemoveHalfNode()
+	{
+		if (linkedListSize <= 0)return;
+		int halfLength = linkedListSize / 2;
+		int newTailIndex = halfLength - 1;
+
+		Node* prevNode = FindNodeAtIndex(newTailIndex);
+		Node* currentNode = prevNode->next;
+		while (currentNode != nullptr) {
+			Node* nodeToDelete = currentNode;
+			currentNode = currentNode->next;
+			delete(nodeToDelete);
+			linkedListSize--;
+		}
+		prevNode->next= nullptr;
+
+	}
 	
 	
 }
