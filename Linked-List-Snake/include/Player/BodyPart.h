@@ -15,6 +15,7 @@ namespace Player {
 
 		private:
 			void CreateBodyParts();
+			Direction previousDirection;
 		public:
 			BodyPart();
 			void Intialize(float width, float height, sf::Vector2i pos, Direction dir);
@@ -35,7 +36,7 @@ namespace Player {
 			Direction GetDirection();
 			sf::Vector2i GetPosition();
 			void SetDirection(Direction DirectionToSet);
-
+			 Direction GetPreviousDirection();
 			
 			~BodyPart();
 		

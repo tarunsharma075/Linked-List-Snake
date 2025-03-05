@@ -34,30 +34,21 @@ namespace LinekdList {
 		}
 	}
 	
-	sf::Vector2i SingleLinkedList::GetNewNodePosition(Node* referenceNode)
+	sf::Vector2i SingleLinkedList::GetNewNodePosition(Node* referenceNode, Operation operation)
 	{
-		Direction directionReference = referenceNode->bodyPart.GetDirection();
-		sf::Vector2i positionReference= referenceNode->bodyPart.GetPosition();
-
-		switch (directionReference)
-		{
-		case Direction::UP:
-			return sf::Vector2i(positionReference.x, positionReference.y - 1);
-			break;
-		case Direction::DOWN:
-			return sf::Vector2i(positionReference.x, positionReference.y + 1);
-			break;
-		case Direction::LEFT:
-			return sf::Vector2i(positionReference.x +1, positionReference.y);
-			break;
-		case Direction::RIGHT:
-			return sf::Vector2i(positionReference.x -1, positionReference.y);
-			break;
-		default:
-			return gridPosition;
-			
-		}
+	;
+	switch (operation)
+	{
+	case LinekdList::Operation::HEAD:
+		return referenceNode->bodyPart.GetNextPosition();
+	case LinekdList::Operation::TAIL:
+		return referenceNode->bodyPart.GetNextPosition();
 	}
+	
+	return gridPosition;
+	}
+		
+	
 	void SingleLinkedList::InsertNodeAtTail()
 	{
 		linkedListSize++;
@@ -102,19 +93,20 @@ namespace LinekdList {
 		}
 	}
 
-	bool SingleLinkedList::CheckNodeCollision()
+
+		bool SingleLinkedList::CheckNodeCollision()
 	{
 		if (headNode == nullptr)
 			return false;
-		sf::Vector2i predictedPsoition = headNode->bodyPart.GetPosition();
+		sf::Vector2i predictedPosition = headNode->bodyPart.GetNextPosition(); // Corrected
 
-		Node* currentNode;
-		currentNode = headNode->next;
+		Node* currentNode = headNode->next;
 		while (currentNode != nullptr) {
-			if (currentNode->bodyPart.GetPosition() == headNode->bodyPart.GetPosition()) return true;
-			std::cout << "collision detected" << std::endl;
+			if (currentNode->bodyPart.GetPosition() == predictedPosition) { // Corrected
+				std::cout << "collision detected" << std::endl;
+				return true;
+			}
 			currentNode = currentNode->next;
-
 		}
 		return false;
 	}
@@ -202,6 +194,7 @@ namespace LinekdList {
 		if (index < 0 || index >= linkedListSize)return;
 		if (index == 0) {
 			InsertNodeAtHead();
+			return;
 		}
 		newNode = CreateNode();
 		int currentIndex = 0;
@@ -289,6 +282,7 @@ namespace LinekdList {
 
 		if (index == 0) {
 			RemoveAllHead();
+			return;
 		}
 
 		RemoveNodeAtInedx(index);
@@ -308,6 +302,7 @@ namespace LinekdList {
 		}
 		prevNode->next = currentNode->next;
 		ShitNodesAfterRemoval(currentNode);
+		delete(currentNode);
 		linkedListSize--;
 	}
 
@@ -337,13 +332,11 @@ namespace LinekdList {
 
 	Node* SingleLinkedList::FindNodeAtIndex(int index)
 	{
-		if (headNode == nullptr)return;
-		if (headNode->next == nullptr) {
-			RemoveAllHead();
-		}
 		Node* currentNode = headNode;
 		Node* prevNode = nullptr;
 		int currentIndex = 0;
+		
+		
 		while (currentNode != nullptr && currentIndex <= index) {
 			prevNode = currentNode;
 			currentNode = currentNode->next;
@@ -368,6 +361,50 @@ namespace LinekdList {
 		}
 		prevNode->next= nullptr;
 
+	}
+
+	Direction SingleLinkedList::ReverseLinkedList()
+	{
+		if (headNode == nullptr || headNode->next == nullptr) return SnakeDirection; 
+
+		Node* currentNode = headNode;
+		Node* prevNode = nullptr;
+		Node* nextNode = nullptr;
+
+		while (currentNode != nullptr) {
+			
+			nextNode = currentNode->next;
+			currentNode->next = prevNode;
+			prevNode = currentNode;
+			currentNode = nextNode;
+
+		}
+		headNode = prevNode;
+		return headNode->bodyPart.GetDirection();
+	}
+
+	Direction SingleLinkedList::GetReverseDirection(Direction ReferenceDirection)
+	{
+		switch (ReferenceDirection)
+		{
+		case Player::Direction::UP:
+			return Direction::DOWN;
+		case Player::Direction::DOWN:
+			return Direction::UP;
+		case Player::Direction::LEFT:
+			return Direction::RIGHT;
+		case Player::Direction::RIGHT:
+			return Direction::LEFT;
+		
+		}
+	}
+
+	void SingleLinkedList::ReverseNodeDirection()
+	{
+		Node* currentNode = headNode;
+		while (currentNode != nullptr) {
+			currentNode->bodyPart.SetDirection(currentNode->bodyPart.GetPreviousDirection());
+		}
 	}
 	
 	

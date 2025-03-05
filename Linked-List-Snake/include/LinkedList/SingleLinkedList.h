@@ -25,7 +25,7 @@ namespace LinekdList {
 		void Intialize(float width, float height, sf::Vector2i position, Player::Direction direction);
 		void Render();
 		
-		sf::Vector2i GetNewNodePosition(Node*referenceNode);
+		sf::Vector2i GetNewNodePosition(Node* referenceNode, Operation operation);
 		void InsertNodeAtTail();
 		void UpdateSingleLinekdListDirection(Player::Direction directionToSet);
 		void UpdateSingleLinkedListPosition();
@@ -45,5 +45,11 @@ namespace LinekdList {
 		 void RemoveNodeAt(int index);
 		 void RemoveNodeAtInedx(int Index);
 		 void RemovePartAtMiddle();
+		 void RemoveNodeAttail();
+		 Node* FindNodeAtIndex(int index);
+		 void RemoveHalfNode();
+		 Direction ReverseLinkedList();
+		 Direction GetReverseDirection(Direction ReferenceDirection);
+		 void ReverseNodeDirection();
 	};
 }
