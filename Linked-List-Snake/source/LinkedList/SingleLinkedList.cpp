@@ -51,6 +51,7 @@ namespace LinekdList {
 	
 	void SingleLinkedList::InsertNodeAtTail()
 	{
+		
 		linkedListSize++;
 		Node*newNode = CreateNode();
 		Node* currentNode = headNode;
@@ -103,7 +104,7 @@ namespace LinekdList {
 		Node* currentNode = headNode->next;
 		while (currentNode != nullptr) {
 			if (currentNode->bodyPart.GetPosition() == predictedPosition) { // Corrected
-				std::cout << "collision detected" << std::endl;
+				
 				return true;
 			}
 			currentNode = currentNode->next;
@@ -111,20 +112,21 @@ namespace LinekdList {
 		return false;
 	}
 
-	void SingleLinkedList::RemoveAllHead()
+	void SingleLinkedList::RemoveNodeAtHead()
 	{
-		linkedListSize--;
+		
 		Node* currentNode = headNode;
 		headNode = headNode->next;
 		currentNode->next = nullptr;
 		delete(currentNode);
+		linkedListSize--;
 	}
 
 	void SingleLinkedList::RemoveAllNodes()
 	{
 		if (headNode == nullptr)return;
 		while (headNode != nullptr) {
-			RemoveAllHead();
+			RemoveNodeAtHead();
 		}
 
 	}
@@ -152,8 +154,6 @@ namespace LinekdList {
 		case Operation::HEAD:
 			return referenceNode->bodyPart.GetNextPosition();
 		
-		//case Operation::MIDDLE:
-		//	//
 		case Operation::TAIL:
 			return referenceNode->bodyPart.GetPreviousPosition();
 			
@@ -281,7 +281,7 @@ namespace LinekdList {
 		if (index<0 || index>=linkedListSize) return;
 
 		if (index == 0) {
-			RemoveAllHead();
+			RemoveNodeAtHead();
 			return;
 		}
 
@@ -320,7 +320,7 @@ namespace LinekdList {
 		Node* currentNode;
 		currentNode = headNode;
 		if (currentNode->next == nullptr) {
-			RemoveAllHead();
+			RemoveNodeAtHead();
 			return;
 		}
 		while (currentNode->next->next != nullptr) {
@@ -365,7 +365,7 @@ namespace LinekdList {
 
 	Direction SingleLinkedList::ReverseLinkedList()
 	{
-		if (headNode == nullptr || headNode->next == nullptr) return SnakeDirection; 
+		 
 
 		Node* currentNode = headNode;
 		Node* prevNode = nullptr;
@@ -380,6 +380,7 @@ namespace LinekdList {
 
 		}
 		headNode = prevNode;
+		ReverseNodeDirection();
 		return headNode->bodyPart.GetDirection();
 	}
 
@@ -403,7 +404,8 @@ namespace LinekdList {
 	{
 		Node* currentNode = headNode;
 		while (currentNode != nullptr) {
-			currentNode->bodyPart.SetDirection(currentNode->bodyPart.GetPreviousDirection());
+			currentNode->bodyPart.SetDirection(GetReverseDirection(currentNode->bodyPart.GetPreviousDirection()));
+			currentNode = currentNode->next;
 		}
 	}
 	

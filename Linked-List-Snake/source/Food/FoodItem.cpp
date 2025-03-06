@@ -17,6 +17,7 @@ namespace Food {
 	}
 	void FoodItem::Render()
 	{
+
 		foodImage->render();
 	}
 	void FoodItem::Update()
@@ -54,8 +55,8 @@ namespace Food {
 	}
 	sf::Vector2f FoodItem::GetFoodPosition()
 	{
-		float xposition = Level::LevelView::borderOffSetLeft + (gridPosition.x * foodWidth) + (foodWidth / 2);
-		float yposition = Level::LevelView::borderOffSetTop + (gridPosition.y * foodHeight) + (foodHeight / 2);
+		float xposition = Level::LevelView::borderOffSetLeft + (gridPosition.x * foodWidth);
+		float yposition = Level::LevelView::borderOffSetTop + (gridPosition.y * foodHeight);
 
 		return sf::Vector2f(xposition, yposition);
 	}

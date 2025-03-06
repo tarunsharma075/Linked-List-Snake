@@ -30,7 +30,7 @@ namespace LinekdList {
 		void UpdateSingleLinekdListDirection(Player::Direction directionToSet);
 		void UpdateSingleLinkedListPosition();
 		bool CheckNodeCollision();
-		void RemoveAllHead();
+		void RemoveNodeAtHead();
 		void RemoveAllNodes();
 		Node* GetHeadNode();
 		std::vector<sf::Vector2i>  GetNodePosition();

@@ -173,41 +173,41 @@ namespace Player {
 	{
 		switch (food) {
 		case FoodType::PIZZA:
-			//Insert At Tail
+			snakeHead->InsertNodeAtTail();
 			break;
 
 		case FoodType::BURGER:
-			//Insert At Head
+			snakeHead->InsertNodeAtHead();
 			break;
 
 		case FoodType::CHEESE:
-			//Insert in Middle
+			snakeHead->InsertNodeInMiddle();
 			break;
 
 		case FoodType::APPLE:
-			//Delete at Head
+			snakeHead->RemoveNodeAtHead();
 			break;
 
 		case FoodType::MANGO:
-			//Delete at Middle
+			snakeHead->RemovePartAtMiddle();
 			break;
 
 		case FoodType::ORANGE:
-			//Delete at Tail
+			snakeHead->RemoveNodeAttail();
 			break;
 
 		case FoodType::POISION:
-			//Delete half the snake
+			snakeHead->RemoveHalfNode();
 			break;
 
 		case FoodType::ALCOHOL:
-			//Reverse the snake
+			currentSnakeDirection = snakeHead->ReverseLinkedList();
 			break;
 		}
 	}
 	SnakeController::~SnakeController()
 	{
-		snakeHead->RemoveAllHead();
+		snakeHead->RemoveNodeAtHead();
 		delete(snakeHead);
 	}
 }

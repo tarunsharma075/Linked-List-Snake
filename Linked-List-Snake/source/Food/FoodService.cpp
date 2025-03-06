@@ -10,7 +10,7 @@ namespace Food {
 }
 void FoodService::Intialize()
 {
-	
+	ElapsedTime = spawnDuration;
 }
 void FoodService::Update()
 {
