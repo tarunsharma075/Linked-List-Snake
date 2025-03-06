@@ -17,7 +17,8 @@ namespace Level {
 		void Render();
 		static const int borderThickness = 10;
 		static const int borderOffSetLeft = 40;
-		static const int borderOffSetTop = 40;
+		static const int borderOffSetTop = 100;
+		static const int border_offset_bottom = 40;
 		sf::Color borderColor = sf::Color::Black;
 		float GetGridheight();
 		float GetGridWidth();

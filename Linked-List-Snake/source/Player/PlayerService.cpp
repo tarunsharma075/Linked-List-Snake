@@ -1,5 +1,5 @@
 #include"Player/PlayerService.h"
-#include"Player/SnakeController.h"
+
 namespace Player {
 	PlayerService::PlayerService()
 	{
@@ -24,6 +24,18 @@ namespace Player {
 	std::vector<sf::Vector2i> PlayerService::GetSnakePsoition()
 	{
 		return snake->GetSnakepsoition();
+	}
+	int PlayerService::GetPlayerScore()
+	{
+		return snake->GetPlayerScore();
+	}
+	TimeComplexity PlayerService::GetTimeComplexity()
+	{
+		return snake->GetTimeComplexity();
+	}
+	LinkedListOperation PlayerService::GetLinkedListOperation()
+	{
+		return snake->GetLinkedListoperation();
 	}
 	PlayerService::~PlayerService()
 	{

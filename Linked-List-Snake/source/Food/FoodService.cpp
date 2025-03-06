@@ -117,6 +117,7 @@ bool FoodService::ProcessFoodCollision(LinekdList::Node* headNode, Food::FoodTyp
 {
 	if (currentFoodItem && currentFoodItem->GetPsoitionOfFood() == headNode->bodyPart.GetPosition()) {
 		food = currentFoodItem->GetCurrentFoodType();
+		
 		return true;
 	}
 	return false;

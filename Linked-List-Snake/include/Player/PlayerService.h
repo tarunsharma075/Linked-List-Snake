@@ -1,8 +1,9 @@
 #pragma once
+#include"Player/SnakeController.h"
 #include<vector>
 #include<SFML/System/Vector2.hpp>
 namespace Player {
-	class SnakeController;
+
 	class PlayerService {
 	private:
 		SnakeController* snake;
@@ -13,6 +14,9 @@ namespace Player {
 		void Render();
 		void SpawnPlayer();
 		std::vector<sf::Vector2i> GetSnakePsoition();
+		int GetPlayerScore();
+		TimeComplexity GetTimeComplexity();
+		LinkedListOperation GetLinkedListOperation();
 		~PlayerService();
 	};
 }

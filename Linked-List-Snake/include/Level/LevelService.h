@@ -18,5 +18,6 @@ namespace Level {
 		float GetCellWidth();
 		void Spawnfood();
 		void SpawnLevelElements(Level::LevelNumber leveltoload);
+		LevelNumber GetCurrentLevel();
 	};
 }

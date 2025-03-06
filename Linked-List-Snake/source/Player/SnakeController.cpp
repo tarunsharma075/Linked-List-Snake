@@ -29,7 +29,7 @@ namespace Player {
 	
 		Reset();
 		snakeHead->Intialize(Width, Height, defaultPosition, defaultDirection);
-		std::cout << defaultPosition.x << " "<<defaultPosition.y;
+		
 		
 	}
 	void SnakeController::Update()
@@ -102,6 +102,9 @@ namespace Player {
 		ElapsedTime = 0.f;
 		resetDuration = 0.f;
 		currenInputState = InputState::Waiting;
+		playerScore = 0;
+		time_complexity = TimeComplexity::NONE;
+		last_linked_list_operation = LinkedListOperation::NONE;
 	}
 	void SnakeController::SpawnSnake()
 	{
@@ -166,44 +169,73 @@ namespace Player {
 		if (foodService->ProcessFoodCollision(snakeHead->GetHeadNode(), foodType)) {
 
 			foodService->destroyfood();
-			OnFoodCollsion(foodType);
+			OnFoodCollision(foodType);
+			playerScore++;
 		}
 	}
-	void SnakeController::OnFoodCollsion(Food::FoodType food)
+	void SnakeController::OnFoodCollision(Food::FoodType food)
 	{
 		switch (food) {
 		case FoodType::PIZZA:
 			snakeHead->InsertNodeAtTail();
+			time_complexity = TimeComplexity::ONE;
+			last_linked_list_operation = LinkedListOperation::INSERT_AT_HEAD;
 			break;
 
 		case FoodType::BURGER:
 			snakeHead->InsertNodeAtHead();
+			time_complexity = TimeComplexity::ONE;
+			last_linked_list_operation = LinkedListOperation::INSERT_AT_HEAD;
 			break;
 
 		case FoodType::CHEESE:
 			snakeHead->InsertNodeInMiddle();
+			time_complexity = TimeComplexity::N;
+			last_linked_list_operation = LinkedListOperation::INSERT_AT_MID;
 			break;
 
 		case FoodType::APPLE:
 			snakeHead->RemoveNodeAtHead();
+			time_complexity = TimeComplexity::ONE;
+			last_linked_list_operation = LinkedListOperation::REMOVE_AT_HEAD;
 			break;
 
 		case FoodType::MANGO:
 			snakeHead->RemovePartAtMiddle();
+			time_complexity = TimeComplexity::N;
+			last_linked_list_operation = LinkedListOperation::REMOVE_AT_MID;
 			break;
 
 		case FoodType::ORANGE:
 			snakeHead->RemoveNodeAttail();
+			time_complexity = TimeComplexity::N;
+			last_linked_list_operation = LinkedListOperation::REMOVE_AT_TAIL;
 			break;
 
 		case FoodType::POISION:
 			snakeHead->RemoveHalfNode();
+			time_complexity = TimeComplexity::N;
+			last_linked_list_operation = LinkedListOperation::DELETE_HALF_LIST;
 			break;
 
 		case FoodType::ALCOHOL:
 			currentSnakeDirection = snakeHead->ReverseLinkedList();
+			time_complexity = TimeComplexity::N;
+			last_linked_list_operation = LinkedListOperation::REVERSE_LIST;
 			break;
 		}
+	}
+	int SnakeController::GetPlayerScore()
+	{
+		return playerScore;
+	}
+	LinkedListOperation SnakeController::GetLinkedListoperation()
+	{
+		return last_linked_list_operation;
+	}
+	TimeComplexity SnakeController::GetTimeComplexity()
+	{
+		return time_complexity;
 	}
 	SnakeController::~SnakeController()
 	{

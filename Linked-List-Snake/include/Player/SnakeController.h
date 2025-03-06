@@ -6,6 +6,16 @@
 namespace Player {
 	
 	
+
+	enum class TimeComplexity {
+
+		NONE,
+		ONE,
+		N,
+	};
+
+
+
 	enum class InputState {
 
 		Processing,
@@ -18,6 +28,20 @@ namespace Player {
 			DEAD,
 		};
 
+		enum class LinkedListOperation{
+
+			NONE,
+			INSERT_AT_HEAD,
+			INSERT_AT_TAIL,
+			INSERT_AT_MID,
+			REMOVE_AT_HEAD,
+			REMOVE_AT_TAIL,
+			REMOVE_AT_MID,
+			DELETE_HALF_LIST,
+			REVERSE_LIST,
+
+
+		};
 		
 	class SnakeController {
 	private:
@@ -31,7 +55,10 @@ namespace Player {
 	float resetDuration = 2, f;
 	float resetelapsedtime;
 	Direction currentSnakeDirection;
+	TimeComplexity time_complexity;
+	LinkedListOperation last_linked_list_operation;
 LinekdList::SingleLinkedList* snakeHead;
+int playerScore = 0;
 	public:
 		SnakeController();
 		void Intialize();
@@ -53,8 +80,10 @@ LinekdList::SingleLinkedList* snakeHead;
 		void SnakeBodyCollision();
 		void SnakeElementCollision();
 		void SnakeFoodCollision();
-		void OnFoodCollsion(Food::FoodType food);
-		
+		void OnFoodCollision(Food::FoodType food);
+		int GetPlayerScore();
+		LinkedListOperation GetLinkedListoperation();
+		TimeComplexity GetTimeComplexity();
 		~SnakeController();
 	};
 }

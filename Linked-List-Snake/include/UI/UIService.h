@@ -5,7 +5,7 @@
 #include "UI/Credits/CreditsScreenUIController.h"
 #include "UI/Interface/IUIController.h"
 #include"UI/LevelSelectionUI/LevelSelection.h"
-
+#include"UI/GamePlay/GamePlayUi.h"
 namespace UI
 {
 	class UIService
@@ -16,7 +16,7 @@ namespace UI
 		Instructions::InstructionsScreenUIController* instructions_screen_ui_controller;
 		Credits::CreditsScreenUIController* credits_screen_ui_controller;
 		LevelSelection::LevelSelectionUI* level_Selection_ui_controller;
-
+		GameplayUI::GameplayUIController* gameplayUiController;
 
 		void createControllers();
 		void initializeControllers();

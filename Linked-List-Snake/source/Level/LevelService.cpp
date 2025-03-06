@@ -54,4 +54,8 @@ namespace Level {
 		std::vector<Element::ElementData>elementList = levelController->GetElementDataList((int)leveltoload);
 		ServiceLocator::getInstance()->GetElementService()->SpawnElements(elementList, Width, height);
 	}
+	LevelNumber LevelService::GetCurrentLevel()
+	{
+		return current_level;
+	}
 }

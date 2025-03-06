@@ -133,6 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\UI\GamePlay\GamePlayUi.cpp" />
     <ClCompile Include="source\Food\FoodService.cpp" />
     <ClCompile Include="source\Food\FoodItem.cpp" />
     <ClCompile Include="source\Element\ElementService.cpp" />
@@ -187,6 +188,7 @@
     <ClInclude Include="include\Player\SnakeController.h" />
     <ClInclude Include="include\Time\TimeService.h" />
     <ClInclude Include="include\UI\Credits\CreditsScreenUIController.h" />
+    <ClInclude Include="include\UI\GamePlay\GamePlayUi.h" />
     <ClInclude Include="include\UI\Instructions\InstructionsScreenUIController.h" />
     <ClInclude Include="include\UI\LevelSelectionUI\LevelSelectionUIController.h" />
     <ClInclude Include="include\UI\UIElement\AnimatedImageView.h" />

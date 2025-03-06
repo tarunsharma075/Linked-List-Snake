@@ -22,6 +22,7 @@ namespace Food {
 		const float spawnDuration = 4.f;
 		float ElapsedTime;
 		FoodSpawningStatus CurrentStatus;
+	
 	public:
 		FoodService();
 		void Intialize();

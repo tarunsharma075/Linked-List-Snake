@@ -43,7 +43,7 @@ void LevelView::Intialize()
 	void LevelView::CalculateGridExtents()
 	{
 		sf::RenderWindow* window = Global::ServiceLocator::getInstance()->getInstance()->getGraphicService()->getGameWindow();
-		gridHeight = window->getSize().y - 2 * borderOffSetTop;
+		gridHeight = window->getSize().y -   borderOffSetTop-border_offset_bottom;
 		gridWidth = window->getSize().x - 2 * borderOffSetLeft;
 
 	}
