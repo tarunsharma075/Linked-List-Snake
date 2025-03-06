@@ -6,6 +6,7 @@ namespace Sound
 	enum class SoundType
 	{
 		BUTTON_CLICK,
+		DEATH,
 	};
 
 	class SoundService
@@ -13,6 +14,7 @@ namespace Sound
 	private:
 		const int background_music_volume = 30;
 
+		sf::SoundBuffer buffer_Sound_Death;
 		sf::Music background_music;
 		sf::Sound sound_effect;
 		sf::SoundBuffer buffer_button_click;
