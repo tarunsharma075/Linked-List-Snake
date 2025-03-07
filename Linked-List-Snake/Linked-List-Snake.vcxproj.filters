@@ -200,7 +200,7 @@
     <ClInclude Include="include\Player\Direction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\LinkedList\Node.h">
+    <ClInclude Include="include\LinkedListLibrary\SingleNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Player\PlayerService.h">
@@ -212,7 +212,7 @@
     <ClInclude Include="include\UI\LevelSelectionUI\LevelSelection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\LinkedList\SingleLinkedList.h">
+    <ClInclude Include="include\LinkedListLibrary\SingleLinkedList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\ELement\ElementData.h">
@@ -234,6 +234,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\UI\GamePlay\GamePlayUi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LinkedListLibrary\DoubleLinkedList\DoubleNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LinkedListLibrary\DoubleLinkedList\DoubleLinkedList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LinkedListLibrary\ll\BaseNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -3,9 +3,9 @@
 #include<iostream>
 using namespace Player;
 namespace LinekdList {
-	Node* SingleLinkedList::CreateNode()
+	SingleNode* SingleLinkedList::CreateNode()
 	{
-		return new Node;
+		return new SingleNode;
 	}
 	LinekdList::SingleLinkedList::SingleLinkedList()
 	{
@@ -27,14 +27,14 @@ namespace LinekdList {
 	void SingleLinkedList::Render()
 	{
 		
-		Node* currentNode = headNode;
+		SingleNode* currentNode = headNode;
 		while (currentNode != nullptr) {
 			currentNode->bodyPart.Render();
 			currentNode = currentNode->next;
 		}
 	}
 	
-	sf::Vector2i SingleLinkedList::GetNewNodePosition(Node* referenceNode, Operation operation)
+	sf::Vector2i SingleLinkedList::GetNewNodePosition(SingleNode* referenceNode, Operation operation)
 	{
 	;
 	switch (operation)
@@ -53,8 +53,8 @@ namespace LinekdList {
 	{
 		
 		linkedListSize++;
-		Node*newNode = CreateNode();
-		Node* currentNode = headNode;
+		SingleNode*newNode = CreateNode();
+		SingleNode* currentNode = headNode;
 
 		if (currentNode == nullptr) {
 			headNode = newNode;
@@ -72,7 +72,7 @@ namespace LinekdList {
 	void SingleLinkedList::UpdateSingleLinekdListDirection(Player::Direction directionToSet)
 	{
 
-		Node* currentNode = headNode;
+		SingleNode* currentNode = headNode;
 		while (currentNode != nullptr) {
 
 			Direction previousDirection = currentNode->bodyPart.GetDirection();
@@ -86,7 +86,7 @@ namespace LinekdList {
 	{
 		
 
-		Node* currenNode = headNode;
+		SingleNode* currenNode = headNode;
 
 		while (currenNode != nullptr) {
 			currenNode->bodyPart.UpdatePosition();
@@ -101,7 +101,7 @@ namespace LinekdList {
 			return false;
 		sf::Vector2i predictedPosition = headNode->bodyPart.GetNextPosition(); // Corrected
 
-		Node* currentNode = headNode->next;
+		SingleNode* currentNode = headNode->next;
 		while (currentNode != nullptr) {
 			if (currentNode->bodyPart.GetPosition() == predictedPosition) { // Corrected
 				
@@ -115,7 +115,7 @@ namespace LinekdList {
 	void SingleLinkedList::RemoveNodeAtHead()
 	{
 		
-		Node* currentNode = headNode;
+		SingleNode* currentNode = headNode;
 		headNode = headNode->next;
 		currentNode->next = nullptr;
 		delete(currentNode);
@@ -131,14 +131,14 @@ namespace LinekdList {
 
 	}
 
-	Node* SingleLinkedList::GetHeadNode()
+	SingleNode* SingleLinkedList::GetHeadNode()
 	{
 		return headNode;
 	}
 
 	std::vector<sf::Vector2i> SingleLinkedList::GetNodePosition()
 	{
-		Node* currentNode;
+		SingleNode* currentNode;
 		currentNode = headNode;
 		std::vector<sf::Vector2i> nodePositionList;
 		while (currentNode != nullptr) {
@@ -148,7 +148,7 @@ namespace LinekdList {
 		return nodePositionList;
 	}
 
-	sf::Vector2i SingleLinkedList::NewNodePosition(Node* referenceNode, Operation currentOperation)
+	sf::Vector2i SingleLinkedList::NewNodePosition(SingleNode* referenceNode, Operation currentOperation)
 	{
 		switch (currentOperation) {
 		case Operation::HEAD:
@@ -162,7 +162,7 @@ namespace LinekdList {
 		return gridPosition;
 	}
 
-	void  SingleLinkedList::IntializeNewNode(Node* newNode, Node* refrennceNode, Operation operation)
+	void  SingleLinkedList::IntializeNewNode(SingleNode* newNode, SingleNode* refrennceNode, Operation operation)
 	{
 		if (refrennceNode == nullptr) {
 			newNode->bodyPart.Intialize(nodeWidth, nodeHeight, gridPosition, SnakeDirection);
@@ -175,7 +175,7 @@ namespace LinekdList {
 	void SingleLinkedList::InsertNodeAtHead()
 	{
 		linkedListSize++;
-		Node* newNOde = CreateNode();
+		SingleNode* newNOde = CreateNode();
 		if (headNode == nullptr) {
 			headNode = newNOde;
 			IntializeNewNode(newNOde, nullptr, Operation::HEAD);
@@ -189,7 +189,7 @@ namespace LinekdList {
 
 	void SingleLinkedList::InsertAtIndex(int index)
 	{
-		Node* newNode;
+		SingleNode* newNode;
 		
 		if (index < 0 || index >= linkedListSize)return;
 		if (index == 0) {
@@ -198,8 +198,8 @@ namespace LinekdList {
 		}
 		newNode = CreateNode();
 		int currentIndex = 0;
-		Node* currentnode = headNode;
-		Node* prevNode = nullptr;
+		SingleNode* currentnode = headNode;
+		SingleNode* prevNode = nullptr;
 		while (currentnode != nullptr && currentIndex <index) {
 			prevNode = currentnode;
 			currentnode = currentnode->next;
@@ -213,9 +213,9 @@ namespace LinekdList {
 		ShiftNodesAfterInsertion(newNode, currentnode, prevNode);
 	}
 
-	void SingleLinkedList::ShiftNodesAfterInsertion(Node* newNode, Node* currentNode, Node* prevNode)
+	void SingleLinkedList::ShiftNodesAfterInsertion(SingleNode* newNode, SingleNode* currentNode, SingleNode* prevNode)
 	{
-		Node* nextNode = currentNode;
+		SingleNode* nextNode = currentNode;
 		currentNode = newNode;
 
 		while (currentNode != nullptr && nextNode != nullptr) {
@@ -230,8 +230,8 @@ namespace LinekdList {
 
 	int SingleLinkedList::FindTheMiddleIndex()
 	{
-		Node* slow = headNode;
-		Node* fast = headNode;
+		SingleNode* slow = headNode;
+		SingleNode* fast = headNode;
 
 		int middleIndex=0;
 
@@ -255,7 +255,7 @@ namespace LinekdList {
 		InsertAtIndex(middleindex);
 	}
 
-	void SingleLinkedList::ShitNodesAfterRemoval(Node* currentNode)
+	void SingleLinkedList::ShitNodesAfterRemoval(SingleNode* currentNode)
 	{
 		sf::Vector2i previousNodePosition = currentNode->bodyPart.GetPosition();
 		Direction previousNodeDirection = currentNode->bodyPart.GetDirection();
@@ -290,8 +290,8 @@ namespace LinekdList {
 
 	void SingleLinkedList::RemoveNodeAtInedx(int Index)
 	{
-		Node* currentNode = headNode;
-		Node* prevNode = nullptr;
+		SingleNode* currentNode = headNode;
+		SingleNode* prevNode = nullptr;
 		int currentIndex = 0;
 
 		while (currentNode != nullptr && currentIndex < Index) {
@@ -317,7 +317,7 @@ namespace LinekdList {
 	{
 		if (headNode == nullptr)return;
 
-		Node* currentNode;
+		SingleNode* currentNode;
 		currentNode = headNode;
 		if (currentNode->next == nullptr) {
 			RemoveNodeAtHead();
@@ -330,10 +330,10 @@ namespace LinekdList {
 		currentNode->next = nullptr;
 	}
 
-	Node* SingleLinkedList::FindNodeAtIndex(int index)
+	SingleNode* SingleLinkedList::FindNodeAtIndex(int index)
 	{
-		Node* currentNode = headNode;
-		Node* prevNode = nullptr;
+		SingleNode* currentNode = headNode;
+		SingleNode* prevNode = nullptr;
 		int currentIndex = 0;
 		
 		
@@ -351,10 +351,10 @@ namespace LinekdList {
 		int halfLength = linkedListSize / 2;
 		int newTailIndex = halfLength - 1;
 
-		Node* prevNode = FindNodeAtIndex(newTailIndex);
-		Node* currentNode = prevNode->next;
+		SingleNode* prevNode = FindNodeAtIndex(newTailIndex);
+		SingleNode* currentNode = prevNode->next;
 		while (currentNode != nullptr) {
-			Node* nodeToDelete = currentNode;
+			SingleNode* nodeToDelete = currentNode;
 			currentNode = currentNode->next;
 			delete(nodeToDelete);
 			linkedListSize--;
@@ -367,9 +367,9 @@ namespace LinekdList {
 	{
 		 
 
-		Node* currentNode = headNode;
-		Node* prevNode = nullptr;
-		Node* nextNode = nullptr;
+		SingleNode* currentNode = headNode;
+		SingleNode* prevNode = nullptr;
+		SingleNode* nextNode = nullptr;
 
 		while (currentNode != nullptr) {
 			
@@ -402,7 +402,7 @@ namespace LinekdList {
 
 	void SingleLinkedList::ReverseNodeDirection()
 	{
-		Node* currentNode = headNode;
+		SingleNode* currentNode = headNode;
 		while (currentNode != nullptr) {
 			currentNode->bodyPart.SetDirection(GetReverseDirection(currentNode->bodyPart.GetPreviousDirection()));
 			currentNode = currentNode->next;
