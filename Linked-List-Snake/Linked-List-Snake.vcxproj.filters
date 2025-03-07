@@ -96,7 +96,7 @@
     <ClCompile Include="source\UI\LevelSelectionUI\LevelSelection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\LinkedList\SingleLinkedList.cpp">
+    <ClCompile Include="source\LinkedList\LinkedList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\Element\Obstacle.cpp">
@@ -200,7 +200,7 @@
     <ClInclude Include="include\Player\Direction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\LinkedListLibrary\SingleNode.h">
+    <ClInclude Include="include\LinkedListLibrary\SingleLinkedList\SingleNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Player\PlayerService.h">
@@ -212,7 +212,7 @@
     <ClInclude Include="include\UI\LevelSelectionUI\LevelSelection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\LinkedListLibrary\SingleLinkedList.h">
+    <ClInclude Include="include\LinkedListLibrary\LinkedList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\ELement\ElementData.h">
@@ -242,7 +242,7 @@
     <ClInclude Include="include\LinkedListLibrary\DoubleLinkedList\DoubleLinkedList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\LinkedListLibrary\ll\BaseNode.h">
+    <ClInclude Include="include\LinkedListLibrary\SingleLinkedList\SingleLinkedList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

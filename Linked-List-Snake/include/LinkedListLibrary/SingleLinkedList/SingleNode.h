@@ -1,9 +1,6 @@
 #pragma once
-#include""
-using namespace Player;
-namespace LinkedList {
-	namespace SingleLinekdList {
+#include"LinkedListLibrary/Node.h"
+namespace LinkedListLib {
 
-		struct SingleNode :public Node {};
-	}
+	struct SingleNode:public Node{};
 }

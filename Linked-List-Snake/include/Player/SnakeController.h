@@ -1,7 +1,7 @@
 #pragma once
 #include<SFML/Graphics.hpp>
 #include"Player/Direction.h"
-#include"LinkedList/SingleLinkedList.h"
+#include"LinkedListLibrary/Node.h"
 #include"Food/FoodType.h"
 namespace Player {
 	
@@ -57,7 +57,7 @@ namespace Player {
 	Direction currentSnakeDirection;
 	TimeComplexity time_complexity;
 	LinkedListOperation last_linked_list_operation;
-LinekdList::SingleLinkedList* snakeHead;
+LinkedListLib::Node* snakeHead;
 int playerScore = 0;
 	public:
 		SnakeController();

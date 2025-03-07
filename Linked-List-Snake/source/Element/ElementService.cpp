@@ -3,7 +3,8 @@
 #include"Global/ServiceLocator.h"
 #include"ELement/Obstacle.h"
 #include"ELement/ElementData.h"
-#include"LinkedList/SingleLinkedList.h"
+#include"LinkedListLibrary/Node.h"
+
 namespace Element {
 	ElementService::ElementService()
 	{
@@ -52,10 +53,10 @@ namespace Element {
 		return elementPositionList;
 	}
 
-	bool ElementService::ProcessElementCollision(LinekdList::Node* headNode)
+	bool ElementService::ProcessElementCollision(LinkedListLib::Node* headNode)
 	{
 		for (int i = 0; i < obstaclelist.size(); i++) {
-			if (obstaclelist[i]->GetElemetPsoition() == headNode->body   GetPosition() || 
+			if (obstaclelist[i]->GetElemetPsoition() == headNode-> GetPosition() || 
 				obstaclelist[i]->GetElemetPsoition()== headNode->bodyPart.GetNextPosition()){
 				return true;
 			}

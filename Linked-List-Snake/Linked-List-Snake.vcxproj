@@ -138,7 +138,7 @@
     <ClCompile Include="source\Food\FoodItem.cpp" />
     <ClCompile Include="source\Element\ElementService.cpp" />
     <ClCompile Include="source\Element\Obstacle.cpp" />
-    <ClCompile Include="source\LinkedList\SingleLinkedList.cpp" />
+    <ClCompile Include="source\LinkedList\LinkedList.cpp" />
     <ClCompile Include="source\Player\BodyPart.cpp" />
     <ClCompile Include="source\Player\SnakeController.cpp" />
     <ClCompile Include="source\Player\PlayerService.cpp" />
@@ -182,11 +182,10 @@
     <ClInclude Include="include\Level\LevelView.h" />
     <ClInclude Include="include\LinkedListLibrary\DoubleLinkedList\DoubleLinkedList.h" />
     <ClInclude Include="include\LinkedListLibrary\DoubleLinkedList\DoubleNode.h" />
-    <ClInclude Include="include\LinkedListLibrary\ll\BaseNode.h" />
-    <ClInclude Include="include\LinkedListLibrary\SingleLinkedList.h" />
+    <ClInclude Include="include\LinkedListLibrary\LinkedList.h" />
     <ClInclude Include="include\Player\BodyPart.h" />
     <ClInclude Include="include\Player\Direction.h" />
-    <ClInclude Include="include\LinkedListLibrary\SingleNode.h" />
+    <ClInclude Include="include\LinkedListLibrary\SingleLinkedList\SingleNode.h" />
     <ClInclude Include="include\Player\PlayerService.h" />
     <ClInclude Include="include\Player\SnakeController.h" />
     <ClInclude Include="include\Time\TimeService.h" />
@@ -211,6 +210,7 @@
     <ClInclude Include="include\UI\UIElement\UIView.h" />
     <ClInclude Include="include\UI\UIElement\RectangleShapeView.h" />
     <ClInclude Include="include\UI\LevelSelectionUI\LevelSelection.h" />
+    <ClInclude Include="include\LinkedListLibrary\SingleLinkedList\SingleLinkedList.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
