@@ -133,6 +133,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\LinkedList\DoubleLinkedList\DoubleLinkedList.cpp" />
+    <ClCompile Include="source\LinkedList\SingleLinkedList\SingleLinkedList.cpp" />
     <ClCompile Include="source\UI\GamePlay\GamePlayUi.cpp" />
     <ClCompile Include="source\Food\FoodService.cpp" />
     <ClCompile Include="source\Food\FoodItem.cpp" />
