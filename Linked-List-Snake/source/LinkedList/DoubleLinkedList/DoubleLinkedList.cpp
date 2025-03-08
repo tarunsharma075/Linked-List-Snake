@@ -184,6 +184,10 @@ void DoubleLinked::DoubleLinkedList::removeNodeAtIndex(int index)
 
 void DoubleLinked::DoubleLinkedList::removeAllNodes()
 {
+	if (head_node == nullptr)return;
+	while (head_node != nullptr) {
+		removeNodeAtHead();
+	}
 }
 
 void DoubleLinked::DoubleLinkedList::removeHalfNodes()
