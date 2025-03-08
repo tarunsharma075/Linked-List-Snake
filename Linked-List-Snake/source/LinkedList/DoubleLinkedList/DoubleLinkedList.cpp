@@ -115,6 +115,15 @@ void DoubleLinked::DoubleLinkedList::removeNodeAtTail()
 
 void DoubleLinked::DoubleLinkedList::removeNodeAtHead()
 {
+	Node* currentNode;
+	currentNode = head_node;
+	head_node = head_node->next;
+	if (currentNode != nullptr) {
+		static_cast<DoubelNode*>(head_node)->prevNode = nullptr;
+
+	}
+	currentNode->next = nullptr;
+	delete(currentNode);
 }
 
 void DoubleLinked::DoubleLinkedList::removeNodeAtMiddle()
