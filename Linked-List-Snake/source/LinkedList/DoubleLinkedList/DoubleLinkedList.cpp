@@ -192,6 +192,18 @@ void DoubleLinked::DoubleLinkedList::removeAllNodes()
 
 void DoubleLinked::DoubleLinkedList::removeHalfNodes()
 {
+	if (linked_list_size < 1)return;
+	int halfLength = linked_list_size / 2;
+	int newTailIndex = halfLength - 1;
+	Node* prevNode = findNodeAtIndex(newTailIndex);
+	Node* currentNode = prevNode->next;
+	while (currentNode != nullptr) {
+		Node *nodeToDelete = currentNode;
+		currentNode = currentNode->next;
+
+		delete(nodeToDelete);
+	}
+	prevNode->next = nullptr;
 }
 
 void DoubleLinked::DoubleLinkedList::shiftNodesAfterRemoval(Node* currentNode)
