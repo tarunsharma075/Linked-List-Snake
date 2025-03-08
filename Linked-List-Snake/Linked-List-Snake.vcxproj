@@ -195,6 +195,7 @@
     <ClInclude Include="include\UI\Credits\CreditsScreenUIController.h" />
     <ClInclude Include="include\UI\GamePlay\GamePlayUi.h" />
     <ClInclude Include="include\UI\Instructions\InstructionsScreenUIController.h" />
+    <ClInclude Include="include\UI\LinkedListSelectionUI\LinkedListSelectionUI.h" />
     <ClInclude Include="include\UI\LevelSelectionUI\LevelSelectionUIController.h" />
     <ClInclude Include="include\UI\UIElement\AnimatedImageView.h" />
     <ClInclude Include="include\UI\UIElement\ButtonView.h" />
@@ -214,6 +215,7 @@
     <ClInclude Include="include\UI\UIElement\RectangleShapeView.h" />
     <ClInclude Include="include\UI\LevelSelectionUI\LevelSelection.h" />
     <ClInclude Include="include\LinkedListLibrary\SingleLinkedList\SingleLinkedList.h" />
+    <ClInclude Include="source\UI\LinkedListSelectionUi\LinkedListSelectionUi.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

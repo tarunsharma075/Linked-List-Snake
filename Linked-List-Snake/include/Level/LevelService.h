@@ -6,6 +6,7 @@ namespace Level {
 	private:
 		; LevelController* levelController;
 		LevelNumber current_level;
+		LinkedListType currentLinkedListType;
 	public:
 		LevelService();
 		void Initialize();
@@ -13,11 +14,12 @@ namespace Level {
 		void Render();
 		void SpawPlayer();
 		~LevelService();
-		void createLevel(LevelNumber level_to_load);
+		void createLevel(LinkedListType linkedlistType);
 		float GetCellHeight();
 		float GetCellWidth();
 		void Spawnfood();
 		void SpawnLevelElements(Level::LevelNumber leveltoload);
 		LevelNumber GetCurrentLevel();
+		void SetCurrentLevel(LevelNumber level);
 	};
 }

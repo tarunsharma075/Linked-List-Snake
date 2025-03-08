@@ -254,5 +254,11 @@
     <ClInclude Include="include\LinkedListLibrary\Node.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\UI\LinkedListSelectionUI\LinkedListSelectionUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\UI\LinkedListSelectionUi\LinkedListSelectionUi.cpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
