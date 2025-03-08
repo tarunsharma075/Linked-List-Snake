@@ -6,4 +6,9 @@ namespace Level
 		ONE,
 		TWO,
 	};
+	enum class LinkedListType {
+
+		SingleLinkedList,
+		DoubleLinkedList,
+	};
 }

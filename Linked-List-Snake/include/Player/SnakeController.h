@@ -2,6 +2,7 @@
 #include<SFML/Graphics.hpp>
 #include"Player/Direction.h"
 #include"LinkedListLibrary/Node.h"
+#include"LinkedListLibrary/LinkedList.h"
 #include"Food/FoodType.h"
 namespace Player {
 	
@@ -57,7 +58,7 @@ namespace Player {
 	Direction currentSnakeDirection;
 	TimeComplexity time_complexity;
 	LinkedListOperation last_linked_list_operation;
-LinkedListLib::Node* snakeHead;
+LinkedListLib::LinkedList* snakeHead;
 int playerScore = 0;
 	public:
 		SnakeController();

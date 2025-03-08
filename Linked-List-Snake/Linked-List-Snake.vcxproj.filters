@@ -114,6 +114,12 @@
     <ClCompile Include="source\UI\GamePlay\GamePlayUi.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\LinkedList\DoubleLinkedList\DoubleLinkedList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\LinkedList\SingleLinkedList\SingleLinkedList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Main\GameService.h">
@@ -182,7 +188,7 @@
     <ClInclude Include="include\Level\LevelData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Level\LevelNumber.h">
+    <ClInclude Include="include\Level\LevelConfig.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Level\LevelView.h">
@@ -243,6 +249,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\LinkedListLibrary\SingleLinkedList\SingleLinkedList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LinkedListLibrary\Node.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

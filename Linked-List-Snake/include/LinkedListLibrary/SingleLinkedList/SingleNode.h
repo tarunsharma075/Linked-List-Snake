@@ -1,6 +1,11 @@
 #pragma once
-#include"LinkedListLibrary/Node.h"
-namespace LinkedListLib {
+#include"../../LinkedListLibrary/Node.h"
 
-	struct SingleNode:public Node{};
+namespace LinkedListLib
+{
+	namespace SingleLinked
+	{
+		struct SingleNode : public Node{};
+	}
 }
+
