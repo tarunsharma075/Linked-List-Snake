@@ -29,7 +29,7 @@ namespace Player {
 	void Player::SnakeController::Intialize()
 	{
 		
-		
+		CreateLinkedList();
 		
 	}
 	void SnakeController::Update()

@@ -133,6 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\UI\LinkedListSelectionUi\LinkedListSelectionUI.cpp" />
     <ClCompile Include="source\LinkedList\DoubleLinkedList\DoubleLinkedList.cpp" />
     <ClCompile Include="source\LinkedList\SingleLinkedList\SingleLinkedList.cpp" />
     <ClCompile Include="source\UI\GamePlay\GamePlayUi.cpp" />
@@ -215,7 +216,6 @@
     <ClInclude Include="include\UI\UIElement\RectangleShapeView.h" />
     <ClInclude Include="include\UI\LevelSelectionUI\LevelSelection.h" />
     <ClInclude Include="include\LinkedListLibrary\SingleLinkedList\SingleLinkedList.h" />
-    <ClInclude Include="source\UI\LinkedListSelectionUi\LinkedListSelectionUi.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
