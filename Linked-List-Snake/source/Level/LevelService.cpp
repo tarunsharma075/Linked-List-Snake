@@ -21,7 +21,7 @@ namespace Level {
 	}
 	void LevelService::SpawPlayer()
 	{
-		ServiceLocator::getInstance()->GetPlayerService()->SpawnPlayer();
+		ServiceLocator::getInstance()->GetPlayerService()->SpawnPlayer(currentLinkedListType);
 	}
 	LevelService::~LevelService()
 	{

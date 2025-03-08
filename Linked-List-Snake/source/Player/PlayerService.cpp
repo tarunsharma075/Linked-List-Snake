@@ -1,4 +1,5 @@
 #include"Player/PlayerService.h"
+#include"Level/LevelConfig.h"
 
 namespace Player {
 	PlayerService::PlayerService()
@@ -17,8 +18,9 @@ namespace Player {
 	{
 		snake->Render();
 	}
-	void PlayerService::SpawnPlayer()
+	void PlayerService::SpawnPlayer(Level::LinkedListType linkedlist)
 	{
+		snake->CreateLinkedList(linkedlist);
 		snake->SpawnSnake();
 	}
 	std::vector<sf::Vector2i> PlayerService::GetSnakePsoition()

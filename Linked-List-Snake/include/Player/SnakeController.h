@@ -4,6 +4,7 @@
 #include"LinkedListLibrary/Node.h"
 #include"LinkedListLibrary/LinkedList.h"
 #include"Food/FoodType.h"
+#include"Level/LevelConfig.h"
 namespace Player {
 	
 	
@@ -58,7 +59,7 @@ namespace Player {
 	Direction currentSnakeDirection;
 	TimeComplexity time_complexity;
 	LinkedListOperation last_linked_list_operation;
-LinkedListLib::LinkedList* snakeHead;
+	LinkedListLib::LinkedList* snake;
 int playerScore = 0;
 	public:
 		SnakeController();
@@ -75,7 +76,7 @@ int playerScore = 0;
 		void SetSnakeState(SnakeState state);
 		void ReSpwanSnake();
 		SnakeState GetSnakeState();
-		void CreateLinkedList();
+		void CreateLinkedList(Level::LinkedListType levelType);
 		void DelayedMovement();
 		std::vector<sf::Vector2i> GetSnakepsoition();
 		void SnakeBodyCollision();
@@ -85,6 +86,7 @@ int playerScore = 0;
 		int GetPlayerScore();
 		LinkedListOperation GetLinkedListoperation();
 		TimeComplexity GetTimeComplexity();
+		void intializeLinkedList();
 		~SnakeController();
 	};
 }
