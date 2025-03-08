@@ -111,11 +111,24 @@ void DoubleLinked::DoubleLinkedList::shiftNodesAfterInsertion(Node* new_node, No
 
 void DoubleLinked::DoubleLinkedList::removeNodeAtTail()
 {
+	linked_list_size--;
+	Node* currentNode = head_node;
+	if(currentNode == nullptr)return;
+	if (currentNode->next == nullptr) {
+		removeNodeAtHead();
+		return;
+	}
+
+	Node* prevNode = static_cast<DoubelNode*>(currentNode)->prevNode;
+	prevNode->next = nullptr;
+	delete(currentNode);
+
 }
 
 void DoubleLinked::DoubleLinkedList::removeNodeAtHead()
 {
 	Node* currentNode;
+	linked_list_size--;
 	currentNode = head_node;
 	head_node = head_node->next;
 	if (currentNode != nullptr) {
