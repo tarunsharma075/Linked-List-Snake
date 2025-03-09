@@ -4,6 +4,9 @@
 #include "Instructions/InstructionsScreenUIController.h"
 #include "UI/Credits/CreditsScreenUIController.h"
 #include "UI/Interface/IUIController.h"
+#include"UI/LevelSelectionUI/LevelSelection.h"
+#include"UI/GamePlay/GamePlayUi.h"
+#include"UI/LinkedListSelectionUI/LinkedListSelectionUI.h"
 
 namespace UI
 {
@@ -14,7 +17,9 @@ namespace UI
 		MainMenu::MainMenuUIController* main_menu_controller;
 		Instructions::InstructionsScreenUIController* instructions_screen_ui_controller;
 		Credits::CreditsScreenUIController* credits_screen_ui_controller;
-
+		LevelSelection::LevelSelectionUIController* level_Selection_ui_controller;
+		GameplayUI::GameplayUIController* gameplayUiController;
+		LinkedListUI::LinkedListSelectionUIController* linkedListcontroller;
 
 		void createControllers();
 		void initializeControllers();

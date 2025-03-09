@@ -1,0 +1,252 @@
+#include"LinkedListLibrary/DoubleLinkedList/DoubleLinkedList.h"
+#include"LinkedListLibrary/DoubleLinkedList/DoubleNode.h"
+namespace LinkedListLib {
+	namespace DoubleLinked {
+		Node* LinkedListLib::DoubleLinked::DoubleLinkedList::createNode()
+		{
+			return new DoubelNode();
+		}
+
+		DoubleLinked::DoubleLinkedList::DoubleLinkedList() = default;
+		
+
+		DoubleLinked::DoubleLinkedList::~DoubleLinkedList() = default;
+		
+		void DoubleLinked::DoubleLinkedList::insertNodeAtTail()
+		{
+			linked_list_size++;
+			Node* newnode = createNode();
+			Node* currentNode = head_node;
+			if (currentNode == nullptr) {
+				head_node =newnode;
+				static_cast<DoubelNode*>(newnode)->prevNode = nullptr;
+				initializeNode(newnode, nullptr, Operation::TAIL);
+				return;
+			}
+
+			while (currentNode->next != nullptr) {
+				currentNode = currentNode->next;
+
+			}
+			currentNode->next = newnode;
+			static_cast<DoubelNode*>(newnode)->prevNode = currentNode;
+			initializeNode(newnode, currentNode, Operation::TAIL);
+
+		}
+
+		void DoubleLinked::DoubleLinkedList::insertNodeAtHead()
+		{
+			linked_list_size++;
+			Node* newnode = createNode();
+			if (head_node == nullptr) {
+				head_node = newnode;
+				static_cast<DoubelNode*>(newnode)->prevNode = nullptr;
+				initializeNode(newnode, nullptr, Operation::HEAD);
+				return;
+			}
+
+			initializeNode(newnode, head_node, Operation::HEAD);
+			newnode->next = head_node;
+			static_cast<DoubelNode*>(head_node)->prevNode = newnode;
+			head_node = newnode;
+
+		}
+
+		void DoubleLinked::DoubleLinkedList::insertNodeAtMiddle()
+		{
+			if (head_node == nullptr) {
+				insertNodeAtHead();
+				return;
+			}
+
+			int middleindex = findMiddleNode();
+			insertNodeAtIndex(middleindex);
+		}
+
+		void DoubleLinked::DoubleLinkedList::insertNodeAtIndex(int index)
+		{
+
+			if (index < 0 || index >= linked_list_size)return;
+
+			if (index == 0) {
+				insertNodeAtHead();
+				return;
+			}
+			Node* currentNode = head_node;
+			int currentindex = 0;
+			Node* newNode = createNode();
+			Node* prevNode = nullptr;
+			while (currentNode != nullptr && currentindex < index) {
+
+				prevNode = currentNode;
+				currentNode = currentNode->next;
+				currentindex++;
+			}
+			prevNode->next = newNode;
+			static_cast<DoubelNode*>(newNode)->prevNode = prevNode;
+			static_cast<DoubelNode*>(currentNode)->prevNode = newNode;
+			initializeNode(newNode, head_node, Operation::TAIL);
+			linked_list_size++;
+			shiftNodesAfterInsertion(newNode, currentNode, prevNode);
+		}
+
+		void DoubleLinked::DoubleLinkedList::shiftNodesAfterInsertion(Node* new_node, Node* cur_node, Node* prev_node)
+		{
+			Node* nextNode = cur_node;
+			cur_node = new_node;
+
+			while (cur_node != nullptr && nextNode != nullptr) {
+
+				cur_node->bodyPart.SetPosition(nextNode->bodyPart.GetPosition());
+				cur_node->bodyPart.SetDirection(nextNode->bodyPart.GetDirection());
+				prev_node = cur_node;
+				cur_node = nextNode;
+				nextNode = nextNode->next;
+
+
+			}
+			initializeNode(cur_node, prev_node, Operation::TAIL);
+		}
+
+		void DoubleLinked::DoubleLinkedList::removeNodeAtTail()
+		{
+			
+			Node* currentNode = head_node;
+			if (currentNode == nullptr)return;
+			if (currentNode->next == nullptr) {
+				removeNodeAtHead();
+				return;
+			}
+			
+			while (currentNode->next != nullptr) {
+				currentNode = currentNode->next;
+			}
+			linked_list_size--;
+			Node* prevNode = static_cast<DoubelNode*>(currentNode)->prevNode;
+			prevNode->next = nullptr;
+			delete(currentNode);
+
+		}
+
+		void DoubleLinked::DoubleLinkedList::removeNodeAtHead()
+		{
+			linked_list_size--;
+			Node* currentNode = head_node;
+			head_node = head_node->next;
+			if (head_node != nullptr) {
+
+				static_cast<DoubelNode*>(head_node)->prevNode = nullptr;
+			}
+			currentNode->next = nullptr;
+			delete(currentNode);
+		}
+
+		void DoubleLinked::DoubleLinkedList::removeNodeAtMiddle()
+		{
+			if (head_node == nullptr)return;
+			int middleindex = findMiddleNode();
+			removeNodeAtIndex(middleindex);
+		}
+
+		void DoubleLinked::DoubleLinkedList::removeNodeAt(int index)
+		{
+			if (index < 0 || index >= linked_list_size)return;
+			if (index == 0) {
+				removeNodeAtHead();
+				return;
+			}
+			else {
+
+				removeNodeAtIndex(index);
+			}
+		}
+
+		void DoubleLinked::DoubleLinkedList::removeNodeAtIndex(int index)
+		{
+			linked_list_size--;
+			int currentIndex = 0;
+			Node* currentNode = head_node;
+			Node* prevNode = nullptr;
+			while (currentNode != nullptr && currentIndex < index) {
+				prevNode = currentNode;
+				currentNode = currentNode->next;
+				currentIndex++;
+			}
+			if (prevNode != nullptr) {
+				prevNode->next = currentNode->next;
+			}
+			if (currentNode->next != nullptr) {
+
+				Node* newNode = currentNode->next;
+				static_cast<DoubelNode*>(newNode)->prevNode = prevNode;
+			}
+			shiftNodesAfterRemoval(currentNode);
+			delete(currentNode);
+		}
+
+		void DoubleLinked::DoubleLinkedList::removeAllNodes()
+		{
+			if (head_node == nullptr)return;
+			while (head_node != nullptr) {
+				removeNodeAtHead();
+			}
+		}
+
+		void DoubleLinked::DoubleLinkedList::removeHalfNodes()
+		{
+			if (linked_list_size < 1)return;
+			int halfLength = linked_list_size / 2;
+			int newTailIndex = halfLength - 1;
+			Node* prevNode = findNodeAtIndex(newTailIndex);
+			Node* currentNode = prevNode->next;
+			while (currentNode != nullptr) {
+				Node* nodeToDelete = currentNode;
+				currentNode = currentNode->next;
+
+				delete(nodeToDelete);
+				linked_list_size--;
+			}
+			prevNode->next = nullptr;
+		}
+
+		void DoubleLinked::DoubleLinkedList::shiftNodesAfterRemoval(Node* currentNode)
+		{
+			sf::Vector2i previousNodePosition = currentNode->bodyPart.GetPosition();
+			Direction previoousNodeDirection = currentNode->bodyPart.GetDirection();
+			currentNode - currentNode->next;
+
+			while (currentNode != nullptr) {
+
+				sf::Vector2i tempPosition = currentNode->bodyPart.GetPosition();
+				Direction tempDirection = currentNode->bodyPart.GetDirection();
+				currentNode->bodyPart.SetPosition(previousNodePosition);
+				currentNode->bodyPart.SetDirection(previoousNodeDirection);
+
+				currentNode = currentNode->next;
+				previousNodePosition = tempPosition;
+				previoousNodeDirection = tempDirection;
+			}
+		}
+
+		Direction DoubleLinked::DoubleLinkedList::reverse()
+		{
+			Node* currentNode = head_node;
+			Node* prevNode = nullptr;
+			Node* nextNode = nullptr;
+			while (currentNode != nullptr) {
+				nextNode = currentNode->next;
+				currentNode->next = prevNode;
+				static_cast<DoubelNode*>(currentNode)->prevNode = nextNode;
+				prevNode = currentNode;
+				currentNode = nextNode;
+			}
+			head_node = prevNode;
+			reverseNodeDirections();
+			return head_node->bodyPart.GetDirection();
+		}
+
+
+	}
+}
+
+
