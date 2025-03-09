@@ -18,7 +18,7 @@ namespace LinkedListLib {
 			Node* newnode = createNode();
 			Node* currentNode = head_node;
 			if (currentNode == nullptr) {
-
+				head_node =newnode;
 				static_cast<DoubelNode*>(newnode)->prevNode = nullptr;
 				initializeNode(newnode, nullptr, Operation::TAIL);
 				return;
@@ -46,6 +46,8 @@ namespace LinkedListLib {
 			}
 
 			initializeNode(newnode, head_node, Operation::HEAD);
+			newnode->next = head_node;
+			static_cast<DoubelNode*>(head_node)->prevNode = newnode;
 			head_node = newnode;
 
 		}
@@ -108,14 +110,18 @@ namespace LinkedListLib {
 
 		void DoubleLinked::DoubleLinkedList::removeNodeAtTail()
 		{
-			linked_list_size--;
+			
 			Node* currentNode = head_node;
 			if (currentNode == nullptr)return;
 			if (currentNode->next == nullptr) {
 				removeNodeAtHead();
 				return;
 			}
-
+			
+			while (currentNode->next != nullptr) {
+				currentNode = currentNode->next;
+			}
+			linked_list_size--;
 			Node* prevNode = static_cast<DoubelNode*>(currentNode)->prevNode;
 			prevNode->next = nullptr;
 			delete(currentNode);
@@ -124,13 +130,12 @@ namespace LinkedListLib {
 
 		void DoubleLinked::DoubleLinkedList::removeNodeAtHead()
 		{
-			Node* currentNode;
 			linked_list_size--;
-			currentNode = head_node;
+			Node* currentNode = head_node;
 			head_node = head_node->next;
-			if (currentNode != nullptr) {
-				static_cast<DoubelNode*>(head_node)->prevNode = nullptr;
+			if (head_node != nullptr) {
 
+				static_cast<DoubelNode*>(head_node)->prevNode = nullptr;
 			}
 			currentNode->next = nullptr;
 			delete(currentNode);
@@ -168,7 +173,7 @@ namespace LinkedListLib {
 				currentIndex++;
 			}
 			if (prevNode != nullptr) {
-				prevNode = currentNode->next;
+				prevNode->next = currentNode->next;
 			}
 			if (currentNode->next != nullptr) {
 
@@ -199,6 +204,7 @@ namespace LinkedListLib {
 				currentNode = currentNode->next;
 
 				delete(nodeToDelete);
+				linked_list_size--;
 			}
 			prevNode->next = nullptr;
 		}

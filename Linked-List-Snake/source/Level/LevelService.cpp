@@ -31,8 +31,9 @@ namespace Level {
 	{
 		currentLinkedListType = linkedlistType;
 		SpawnLevelElements(current_level);
-		Spawnfood();
 		SpawPlayer();
+		Spawnfood();
+		
 	}
 	float LevelService::GetCellHeight()
 	{
@@ -61,5 +62,9 @@ namespace Level {
 	void LevelService::SetCurrentLevel(LevelNumber level)
 	{
 		current_level = level;
+	}
+	LinkedListType LevelService::GetCurrentLinkedlistType()
+	{
+		return currentLinkedListType;
 	}
 }

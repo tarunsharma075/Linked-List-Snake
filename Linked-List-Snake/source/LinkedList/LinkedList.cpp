@@ -8,6 +8,7 @@ namespace LinkedListLib
     LinkedList::LinkedList()
     {
         head_node = nullptr;
+        
     }
 
     LinkedList::~LinkedList() = default;
@@ -19,6 +20,7 @@ namespace LinkedListLib
         default_position = position;
         default_direction = direction;
         linked_list_size = 0;
+        
     }
 
     void LinkedList::render()
@@ -121,8 +123,10 @@ namespace LinkedListLib
     {
         std::vector<sf::Vector2i> nodes_position_list;
 
+       
         Node* cur_node = head_node;
 
+        
         while (cur_node != nullptr)
         {
             nodes_position_list.push_back(cur_node->bodyPart.GetPosition());

@@ -262,5 +262,6 @@ namespace LinkedListLib
             reverseNodeDirections();
             return head_node->bodyPart.GetDirection();
         }
+        
     }
 }

@@ -34,6 +34,7 @@
 				void shiftNodesAfterRemoval(Node* cur_node);
 
 				Direction reverse() override;
+				
 			};
 		}
 	}

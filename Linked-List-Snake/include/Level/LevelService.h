@@ -21,5 +21,6 @@ namespace Level {
 		void SpawnLevelElements(Level::LevelNumber leveltoload);
 		LevelNumber GetCurrentLevel();
 		void SetCurrentLevel(LevelNumber level);
+		LinkedListType GetCurrentLinkedlistType();
 	};
 }

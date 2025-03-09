@@ -29,7 +29,7 @@ namespace Player {
 	void Player::SnakeController::Intialize()
 	{
 		
-		CreateLinkedList();
+		
 		
 	}
 	void SnakeController::Update()
@@ -134,7 +134,7 @@ namespace Player {
 			snake = new SingleLinked::SingleLinkedList();
 			break;
 		case::LinkedListType::DoubleLinkedList:
-			snake = new DoubleLinked::DoubleLinkedList;
+			snake = new DoubleLinked::DoubleLinkedList();
 			break;
 
 		}
@@ -235,7 +235,7 @@ namespace Player {
 			snake->removeHalfNodes();
 			time_complexity = TimeComplexity::N;
 			last_linked_list_operation = LinkedListOperation::DELETE_HALF_LIST;
-
+			break;
 		case FoodType::ALCOHOL:
 			//Reverse Direction
 			currentSnakeDirection = snake->reverse();
