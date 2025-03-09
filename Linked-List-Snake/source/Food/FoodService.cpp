@@ -91,6 +91,7 @@ void FoodService::UpdateElapsedDuration()
 
 void FoodService::handelfoodSpawing()
 {
+	if (Global::ServiceLocator::getInstance()->GetPlayerService()->IsSnakeDead())return;
 	if (ElapsedTime >= spawnDuration) {
 		destroyfood();
 		reset();

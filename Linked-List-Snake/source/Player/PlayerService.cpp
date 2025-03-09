@@ -39,6 +39,10 @@ namespace Player {
 	{
 		return snake->GetLinkedListoperation();
 	}
+	bool PlayerService::IsSnakeDead()
+	{
+		return snake->IsSnakeDead();
+	}
 	PlayerService::~PlayerService()
 	{
 		delete(snake);

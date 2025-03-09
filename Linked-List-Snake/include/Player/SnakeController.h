@@ -87,6 +87,7 @@ int playerScore = 0;
 		LinkedListOperation GetLinkedListoperation();
 		TimeComplexity GetTimeComplexity();
 		void intializeLinkedList();
+		bool IsSnakeDead();
 		~SnakeController();
 	};
 }

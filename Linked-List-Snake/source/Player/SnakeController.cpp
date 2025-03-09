@@ -264,6 +264,10 @@ namespace Player {
 		Reset();
 		snake->initialize(Width, Height, defaultPosition, defaultDirection);
 	}
+	bool SnakeController::IsSnakeDead()
+	{
+		return currentsnakeSate ==SnakeState::DEAD;
+	}
 	SnakeController::~SnakeController()
 	{
 		
